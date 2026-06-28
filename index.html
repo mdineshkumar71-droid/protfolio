@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Dinesh Kumar M · Technical Writer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy:    #0F1E3C;
+    --slate:   #1E3A5F;
+    --steel:   #E8EDF4;
+    --offwhite:#F7F9FC;
+    --gold:    #C9A84C;
+    --gold-lt: #E8C96A;
+    --text:    #1A2840;
+    --muted:   #5A6E8A;
+    --white:   #FFFFFF;
+    --radius:  6px;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--offwhite); color: var(--text); line-height: 1.65; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 62px;
+    box-shadow: 0 2px 16px rgba(0,0,0,.35);
+  }
+  .nav-brand { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--gold); text-decoration: none; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--steel); text-decoration: none; font-size: .85rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; transition: color .2s; }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  #hero { background: var(--navy); padding: 100px 5% 90px; position: relative; overflow: hidden; }
+  #hero::before {
+    content: ''; position: absolute; inset: 0;
+    background-image: repeating-linear-gradient(to bottom, transparent 0px, transparent 38px, rgba(255,255,255,.035) 38px, rgba(255,255,255,.035) 39px);
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; max-width: 760px; }
+  .hero-eyebrow { display: inline-block; font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); border-left: 3px solid var(--gold); padding-left: .75rem; margin-bottom: 1.4rem; }
+  .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 700; line-height: 1.1; color: var(--white); margin-bottom: .6rem; }
+  .hero-sub { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 400; font-style: italic; color: var(--gold-lt); margin-bottom: 1.6rem; }
+  .hero-desc { font-size: 1.05rem; color: var(--steel); max-width: 600px; line-height: 1.8; margin-bottom: 2.2rem; }
+  .hero-badges { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2.2rem; }
+  .badge { background: rgba(201,168,76,.15); border: 1px solid rgba(201,168,76,.4); color: var(--gold-lt); font-size: .78rem; font-weight: 500; padding: .3rem .9rem; border-radius: 20px; }
+  .btn { display: inline-block; text-decoration: none; padding: .75rem 2rem; border-radius: var(--radius); font-size: .9rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; transition: transform .15s, box-shadow .15s; }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
+  .btn-gold { background: var(--gold); color: var(--navy); }
+  .btn-outline { border: 2px solid var(--gold); color: var(--gold); margin-left: 1rem; }
+  .btn-outline:hover { background: var(--gold); color: var(--navy); }
+
+  /* SECTIONS */
+  section { padding: 90px 5%; }
+  .section-label { font-size: .75rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); border-left: 3px solid var(--gold); padding-left: .7rem; margin-bottom: .9rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.7rem, 3vw, 2.4rem); font-weight: 700; color: var(--navy); margin-bottom: 1rem; line-height: 1.2; }
+  .section-intro { color: var(--muted); font-size: 1.05rem; max-width: 620px; margin-bottom: 3rem; line-height: 1.75; }
+  .divider { width: 56px; height: 3px; background: var(--gold); margin: 1rem 0 2.4rem; }
+
+  /* ABOUT */
+  #about { background: var(--white); }
+  .about-grid { display: grid; gap: 3.5rem; grid-template-columns: 1fr 1.6fr; align-items: start; }
+  .about-card { background: var(--navy); border-radius: 8px; padding: 2.5rem; color: var(--white); position: relative; overflow: hidden; }
+  .about-card::after { content: '"'; position: absolute; bottom: -20px; right: 16px; font-family: 'Playfair Display', serif; font-size: 10rem; line-height: 1; color: rgba(201,168,76,.12); pointer-events: none; }
+  .about-card p { font-style: italic; font-size: 1.05rem; line-height: 1.8; color: var(--steel); }
+  .about-card .signature { margin-top: 1.5rem; font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--gold); }
+  .about-card .contact-info { margin-top: 1.5rem; padding-top: 1.2rem; border-top: 1px solid rgba(255,255,255,.1); }
+  .about-card .contact-info p { font-style: normal; font-size: .88rem; color: var(--steel); margin-bottom: .4rem; }
+  .about-card .contact-info a { color: var(--gold-lt); text-decoration: none; }
+  .about-body p { color: var(--muted); margin-bottom: 1rem; font-size: 1rem; line-height: 1.8; }
+  .highlight-list { margin-top: 1.2rem; padding-left: 0; list-style: none; }
+  .highlight-list li { padding: .45rem 0; padding-left: 1.4rem; position: relative; color: var(--text); font-size: .97rem; border-bottom: 1px solid var(--steel); }
+  .highlight-list li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: .75rem; top: .6rem; }
+
+  /* EXPERIENCE */
+  #experience { background: var(--offwhite); }
+  .exp-item { border-left: 3px solid var(--gold); padding-left: 1.8rem; margin-bottom: 3rem; position: relative; }
+  .exp-item::before { content: ''; position: absolute; left: -7px; top: 4px; width: 11px; height: 11px; border-radius: 50%; background: var(--gold); }
+  .exp-meta { display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; align-items: baseline; margin-bottom: .8rem; }
+  .exp-role { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--navy); }
+  .exp-company { font-size: .95rem; font-weight: 600; color: var(--slate); }
+  .exp-period { font-size: .82rem; color: var(--muted); background: var(--steel); padding: .2rem .7rem; border-radius: 20px; }
+  .exp-list { list-style: none; margin-top: .6rem; }
+  .exp-list li { padding: .35rem 0; padding-left: 1.3rem; position: relative; color: var(--muted); font-size: .95rem; line-height: 1.65; border-bottom: 1px solid rgba(0,0,0,.05); }
+  .exp-list li::before { content: '·'; position: absolute; left: 0; color: var(--gold); font-size: 1.4rem; top: .1rem; }
+
+  /* WORK SAMPLES */
+  #work { background: var(--white); }
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.6rem; }
+  .card { background: var(--offwhite); border-radius: 8px; border: 1px solid var(--steel); padding: 2rem; transition: box-shadow .2s, transform .2s; display: flex; flex-direction: column; }
+  .card:hover { box-shadow: 0 8px 28px rgba(15,30,60,.12); transform: translateY(-3px); }
+  .card-type { font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: .7rem; }
+  .card h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--navy); margin-bottom: .6rem; line-height: 1.3; }
+  .card p { color: var(--muted); font-size: .93rem; line-height: 1.7; flex: 1; }
+  .card-tags { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: .5rem; }
+  .tag { background: var(--steel); color: var(--slate); font-size: .75rem; font-weight: 500; padding: .25rem .75rem; border-radius: 20px; }
+
+  /* SKILLS */
+  #skills { background: var(--navy); }
+  #skills .section-title { color: var(--white); }
+  #skills .section-intro { color: var(--steel); }
+  .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.4rem; }
+  .skill-block { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.6rem; transition: background .2s; }
+  .skill-block:hover { background: rgba(255,255,255,.1); }
+  .skill-block h4 { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--gold); margin-bottom: .9rem; }
+  .skill-block ul { list-style: none; }
+  .skill-block li { font-size: .9rem; color: var(--steel); padding: .3rem 0; border-bottom: 1px solid rgba(255,255,255,.07); display: flex; align-items: center; gap: .5rem; }
+  .skill-block li::before { content: '·'; color: var(--gold); font-size: 1.2rem; }
+
+  /* ACHIEVEMENTS */
+  #achievements { background: var(--offwhite); }
+  .achieve-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.4rem; }
+  .achieve-card { background: var(--white); border-radius: 8px; border-left: 4px solid var(--gold); padding: 1.6rem 1.8rem; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
+  .achieve-card p { color: var(--text); font-size: .97rem; line-height: 1.7; }
+
+  /* EDUCATION & CERTS */
+  #education { background: var(--white); }
+  .edu-cert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .edu-item { margin-bottom: 1.5rem; }
+  .edu-item h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--navy); margin-bottom: .3rem; }
+  .edu-item p { color: var(--muted); font-size: .93rem; }
+  .cert-item { display: flex; align-items: flex-start; gap: .8rem; padding: .8rem 0; border-bottom: 1px solid var(--steel); }
+  .cert-item:last-child { border-bottom: none; }
+  .cert-icon { color: var(--gold); font-size: 1.1rem; margin-top: .1rem; flex-shrink: 0; }
+  .cert-item p { color: var(--text); font-size: .93rem; line-height: 1.5; }
+  .cert-item span { color: var(--muted); font-size: .83rem; display: block; }
+
+  /* CONTACT */
+  #contact { background: var(--navy); }
+  #contact .section-label { color: var(--gold); }
+  #contact .section-title { color: var(--white); }
+  #contact .section-intro { color: var(--steel); }
+  #contact .divider { background: var(--gold); }
+  .contact-wrap { max-width: 620px; }
+  .form-row { margin-bottom: 1.3rem; }
+  .form-row label { display: block; margin-bottom: .4rem; font-size: .83rem; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; color: var(--steel); }
+  .form-row input, .form-row textarea, .form-row select { width: 100%; padding: .8rem 1rem; border: 1.5px solid rgba(255,255,255,.15); border-radius: var(--radius); font-family: 'Inter', sans-serif; font-size: .97rem; color: var(--white); background: rgba(255,255,255,.07); transition: border-color .2s; outline: none; }
+  .form-row input::placeholder, .form-row textarea::placeholder { color: rgba(255,255,255,.3); }
+  .form-row select { color: rgba(255,255,255,.7); }
+  .form-row select option { background: var(--navy); color: var(--white); }
+  .form-row input:focus, .form-row textarea:focus, .form-row select:focus { border-color: var(--gold); }
+  .form-row textarea { min-height: 130px; resize: vertical; }
+  .form-two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-note { font-size: .85rem; color: var(--steel); margin-top: 1rem; opacity: .7; }
+
+  /* FOOTER */
+  footer { background: #080f1e; color: var(--steel); text-align: center; padding: 2.2rem 5%; font-size: .85rem; }
+  footer span { color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .about-grid, .edu-cert-grid { grid-template-columns: 1fr; }
+    .form-two-col { grid-template-columns: 1fr; }
+    .nav-links { gap: 1.2rem; }
+    .btn-outline { margin-left: 0; margin-top: .75rem; display: block; text-align: center; }
+    section { padding: 60px 5%; }
+  }
+  @media (prefers-reduced-motion: reduce) { .card, .btn, .skill-block { transition: none; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#hero">Dinesh Kumar M</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Technical Writer · 6 Years Experience · Bengaluru, India</span>
+    <h1 class="hero-name">Dinesh Kumar M</h1>
+    <p class="hero-sub">"I enjoy making complex information easy to understand."</p>
+    <p class="hero-desc">
+      Specialising in API documentation, Docs-as-Code, DITA XML, and AI-assisted documentation. 
+      I build scalable documentation systems that improve usability, reduce support overhead, 
+      and help engineering teams ship faster.
+    </p>
+    <div class="hero-badges">
+      <span class="badge">API Documentation</span>
+      <span class="badge">Docs-as-Code</span>
+      <span class="badge">DITA XML</span>
+      <span class="badge">AI-Assisted Docs</span>
+      <span class="badge">Agile Environments</span>
+    </div>
+    <a class="btn btn-gold" href="#work">View My Work</a>
+    <a class="btn btn-outline" href="#contact">Get In Touch</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">Who I Am</div>
+  <div class="section-title">About Me</div>
+  <div class="divider"></div>
+  <div class="about-grid">
+    <div class="about-card">
+      <p>"I enjoy making complex information easy to understand — from intricate API flows to day-to-day user guides."</p>
+      <div class="signature">— Dinesh Kumar M</div>
+      <div class="contact-info">
+        <p>📞 <a href="tel:+919944488432">+91 99444 88432</a></p>
+        <p>✉️ <a href="mailto:palmydinesh@gmail.com">palmydinesh@gmail.com</a></p>
+      </div>
+    </div>
+    <div class="about-body">
+      <p>
+        I'm a Technical Writer with 6 years of experience specialising in API documentation, 
+        Docs-as-Code workflows, and structured authoring using DITA XML. Currently working as 
+        a Consultant Technical Writer at Sapiens Technologies India Pvt Ltd.
+      </p>
+      <p>
+        My background spans insurance software, aerospace applications, and SaaS platforms — 
+        always focused on translating complex technical concepts into content that users and 
+        developers can actually act on.
+      </p>
+      <ul class="highlight-list">
+        <li>6 years of technical writing across insurance, aerospace & SaaS</li>
+        <li>Expert in Docs-as-Code: Git, GitHub, VS Code, Storybook, Markdown</li>
+        <li>Structured authoring with DITA XML, Oxygen XML, Arbortext Editor</li>
+        <li>Developed an AI-powered documentation agent to auto-generate content</li>
+        <li>Led migration from Confluence to a full Docs-as-Code ecosystem</li>
+        <li>B.E. Aeronautical Engineering — J.J. College of Engineering & Technology</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Career</div>
+  <div class="section-title">Professional Experience</div>
+  <div class="divider"></div>
+
+  <div class="exp-item">
+    <div class="exp-meta">
+      <span class="exp-role">Consultant – Technical Writer</span>
+      <span class="exp-company">Sapiens Technologies India Pvt Ltd</span>
+      <span class="exp-period">Jun 2025 – Present</span>
+    </div>
+    <ul class="exp-list">
+      <li>Delivered end-to-end documentation for insurance Journey Builder products, aligning sprint-wise enhancements, feature updates, and versioned release notes with evolving product lifecycles.</li>
+      <li>Produced customer-facing, region-specific release notes and high-quality PDF deliverables, ensuring clarity, consistency, and adherence to localization standards.</li>
+      <li>Designed and maintained structured Insurance Portal User Guides using DITA and Information Architecture principles, enabling scalable and reusable content across releases.</li>
+      <li>Created and maintained comprehensive API documentation — endpoints, request/response schemas, authentication methods, and error handling guidelines.</li>
+      <li>Collaborated with developers, product owners, and SMEs to gather technical insights; led review cycles and improved documentation accuracy and usability.</li>
+      <li>Created visual and interactive documentation using Draw.io, Figma analysis, and video guides via Clipchamp, enhancing user understanding and engagement.</li>
+      <li>Led migration from Confluence to a Docs-as-Code ecosystem using Storybook, transforming legacy content into structured Markdown/HTML for improved maintainability and version control.</li>
+      <li>Managed documentation lifecycle in Storybook using VS Code and GitHub workflows (branching, commits, pull requests, merges), ensuring seamless integration with development pipelines.</li>
+      <li>Developed an AI-powered documentation agent to analyse code repositories and auto-generate structured technical content, improving efficiency and reducing manual effort.</li>
+    </ul>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-meta">
+      <span class="exp-role">Technical Writer</span>
+      <span class="exp-company">Cades Studec Technologies India Pvt Ltd</span>
+      <span class="exp-period">Jun 2022 – May 2025 &amp; Aug 2016 – Aug 2018 · 5 Years total</span>
+    </div>
+    <ul class="exp-list">
+      <li>Analysed customer requirements to develop user manuals, how-to guides, and training materials for Airbus applications.</li>
+      <li>Collaborated with data engineers and SMEs to create detailed internal training documentation.</li>
+      <li>Interpreted engineering drawings and BOMs to ensure accuracy in technical manuals.</li>
+      <li>Conducted peer reviews and maintained high-quality standards before publishing content.</li>
+      <li>Used SAP, Arbortext Editor, and XML tools for structured documentation workflows.</li>
+      <li>Developed content using Simplified Technical English (STE) for improved clarity.</li>
+      <li>Implemented XML-based reusable content strategies to enhance efficiency.</li>
+      <li>Created presentations and training materials using MS Office tools.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- WORK SAMPLES -->
+<section id="work">
+  <div class="section-label">Portfolio</div>
+  <div class="section-title">Work Samples &amp; Case Studies</div>
+  <div class="divider"></div>
+  <p class="section-intro">A selection of documentation projects representing my range across API references, user guides, structured authoring, and AI-assisted workflows.</p>
+
+  <div class="cards-grid">
+    <div class="card">
+      <div class="card-type">API Documentation</div>
+      <h3>Insurance Platform API Reference</h3>
+      <p>Comprehensive API documentation covering endpoints, request/response schemas, authentication methods, and error handling guidelines for an insurance Journey Builder platform at Sapiens Technologies.</p>
+      <div class="card-tags"><span class="tag">REST API</span><span class="tag">OpenAPI</span><span class="tag">DITA XML</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-type">Docs-as-Code Migration</div>
+      <h3>Confluence → Storybook Migration</h3>
+      <p>Led end-to-end migration of legacy Confluence documentation to a Docs-as-Code ecosystem using Storybook, VS Code, and GitHub. Transformed unstructured content into versioned Markdown/HTML with full CI/CD integration.</p>
+      <div class="card-tags"><span class="tag">Storybook</span><span class="tag">GitHub</span><span class="tag">Markdown</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-type">AI-Powered Tool</div>
+      <h3>AI Documentation Agent</h3>
+      <p>Designed and developed an AI-powered agent that analyses code repositories and auto-generates structured technical documentation, significantly reducing manual effort and improving consistency across releases.</p>
+      <div class="card-tags"><span class="tag">AI / LLM</span><span class="tag">Automation</span><span class="tag">Prompt Engineering</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-type">Structured Authoring</div>
+      <h3>Insurance Portal User Guides (DITA)</h3>
+      <p>Designed and maintained structured user guides for an Insurance Portal using DITA XML and Information Architecture principles — enabling scalable, reusable content across multiple product releases.</p>
+      <div class="card-tags"><span class="tag">DITA XML</span><span class="tag">Oxygen XML</span><span class="tag">IA Design</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-type">Aerospace Documentation</div>
+      <h3>Airbus Application Manuals</h3>
+      <p>Developed user manuals, how-to guides, and training materials for Airbus applications at Cades Studec. Used Simplified Technical English (STE) and interpreted engineering drawings and BOMs for accuracy.</p>
+      <div class="card-tags"><span class="tag">STE</span><span class="tag">Arbortext Editor</span><span class="tag">SAP</span></div>
+    </div>
+
+    <div class="card">
+      <div class="card-type">Visual & Video Docs</div>
+      <h3>Interactive Documentation Suite</h3>
+      <p>Created visual and interactive documentation using Draw.io diagrams, Figma-based analysis, and video walkthroughs via Clipchamp and Camtasia — enhancing comprehension for both technical and non-technical audiences.</p>
+      <div class="card-tags"><span class="tag">Draw.io</span><span class="tag">Camtasia</span><span class="tag">Clipchamp</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label" style="border-color:var(--gold)">Toolkit</div>
+  <div class="section-title">Skills &amp; Tools</div>
+  <div class="divider"></div>
+  <p class="section-intro">End-to-end expertise across the full documentation lifecycle — from structured authoring to Docs-as-Code pipelines and AI-assisted workflows.</p>
+
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h4>Authoring Tools</h4>
+      <ul>
+        <li>Adobe RoboHelp</li>
+        <li>MadCap Flare</li>
+        <li>Adobe FrameMaker</li>
+        <li>Arbortext Editor</li>
+        <li>Oxygen XML</li>
+        <li>MS Word</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <h4>Docs-as-Code</h4>
+      <ul>
+        <li>Git &amp; GitHub</li>
+        <li>VS Code</li>
+        <li>Storybook</li>
+        <li>Markdown / HTML</li>
+        <li>CCMS</li>
+        <li>Confluence</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <h4>Structured Authoring</h4>
+      <ul>
+        <li>DITA XML</li>
+        <li>Information Architecture</li>
+        <li>Simplified Technical English</li>
+        <li>XML Reuse Strategies</li>
+        <li>Content Modelling</li>
+        <li>JIRA / Agile workflows</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <h4>Visual &amp; Video</h4>
+      <ul>
+        <li>TechSmith Snagit</li>
+        <li>TechSmith Camtasia</li>
+        <li>Clip Champ</li>
+        <li>MS Visio</li>
+        <li>Draw.io</li>
+        <li>Figma (review &amp; annotate)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-label">Impact</div>
+  <div class="section-title">Key Achievements</div>
+  <div class="divider"></div>
+  <div class="achieve-grid">
+    <div class="achieve-card"><p>Led a successful transition to a Docs-as-Code ecosystem from Confluence, improving documentation scalability and version control across teams.</p></div>
+    <div class="achieve-card"><p>Developed an AI-based documentation automation system that significantly reduced manual documentation effort and improved content consistency.</p></div>
+    <div class="achieve-card"><p>Delivered consistent, high-quality documentation in high-velocity Agile environments with minimal rework and on-time delivery.</p></div>
+    <div class="achieve-card"><p>Enhanced user experience through structured, reusable, DITA-based content strategies enabling faster release cycles.</p></div>
+    <div class="achieve-card"><p>Reduced support tickets by improving documentation quality and clarity, freeing engineering teams to focus on feature development.</p></div>
+    <div class="achieve-card"><p>Produced region-specific, customer-facing release notes and PDF deliverables adhering to international localization standards.</p></div>
+  </div>
+</section>
+
+<!-- EDUCATION & CERTS -->
+<section id="education">
+  <div class="section-label">Background</div>
+  <div class="section-title">Education &amp; Certifications</div>
+  <div class="divider"></div>
+  <div class="edu-cert-grid">
+    <div>
+      <h4 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.15rem;margin-bottom:1.2rem;">Education</h4>
+      <div class="edu-item">
+        <h4>Bachelor of Engineering — Aeronautical</h4>
+        <p>J.J. College of Engineering &amp; Technology</p>
+        <p style="color:var(--gold);font-size:.85rem;margin-top:.3rem;">First Class · 2010 – 2014</p>
+      </div>
+    </div>
+    <div>
+      <h4 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.15rem;margin-bottom:1.2rem;">Certifications</h4>
+      <div class="cert-item">
+        <span class="cert-icon">✦</span>
+        <p>Technical Writing Course <span>by Tech Total Systems</span></p>
+      </div>
+      <div class="cert-item">
+        <span class="cert-icon">✦</span>
+        <p>The Art of API Documentation <span>from Udemy</span></p>
+      </div>
+      <div class="cert-item">
+        <span class="cert-icon">✦</span>
+        <p>Prompt Engineering <span>from Coddy</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Let's Talk</div>
+  <div class="section-title">Get In Touch</div>
+  <div class="divider"></div>
+  <p class="section-intro">Open to freelance contracts, consulting engagements, and full-time opportunities. I typically respond within one business day.</p>
+
+  <div class="contact-wrap">
+    <div class="form-two-col">
+      <div class="form-row">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" placeholder="Alex" />
+      </div>
+      <div class="form-row">
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" placeholder="Smith" />
+      </div>
+    </div>
+    <div class="form-row">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="alex@company.com" />
+    </div>
+    <div class="form-row">
+      <label for="project">Project Type</label>
+      <select id="project">
+        <option value="">Select an option…</option>
+        <option>API / Developer Documentation</option>
+        <option>User Guide / Help Centre</option>
+        <option>DITA XML / Structured Authoring</option>
+        <option>Docs-as-Code Setup</option>
+        <option>AI-Assisted Documentation</option>
+        <option>Full-Time Role</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <label for="message">Message</label>
+      <textarea id="message" placeholder="Tell me about your project, timeline, and documentation challenges…"></textarea>
+    </div>
+    <button class="btn btn-gold" onclick="handleSubmit()">Send Message</button>
+    <p class="form-note">✦ Or email directly: palmydinesh@gmail.com · +91 99444 88432</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Dinesh Kumar M</span> · Technical Writer · Bengaluru, India</p>
+  <p style="margin-top:.5rem;font-size:.8rem;opacity:.6;">API Documentation · Docs-as-Code · DITA XML · AI-Assisted Documentation</p>
+</footer>
+
+<script>
+  function handleSubmit() {
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    if (!email || !message) {
+      alert('Please fill in your email and message before sending.');
+      return;
+    }
+    alert('Thank you! Your message has been sent. Dinesh will be in touch within 24 hours.');
+  }
+</script>
+</body>
+</html>
