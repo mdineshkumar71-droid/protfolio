@@ -42,7 +42,22 @@
     background-image: repeating-linear-gradient(to bottom, transparent 0px, transparent 38px, rgba(255,255,255,.035) 38px, rgba(255,255,255,.035) 39px);
     pointer-events: none;
   }
-  .hero-inner { position: relative; max-width: 760px; }
+  .hero-inner {
+    position: relative;
+    max-width: 1100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 3rem;
+  }
+  .hero-text { flex: 1; min-width: 0; }
+  .hero-photo-col {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.4rem;
+  }
   .hero-eyebrow { display: inline-block; font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); border-left: 3px solid var(--gold); padding-left: .75rem; margin-bottom: 1.4rem; }
   .hero-name { font-family: 'Playfair Display', serif; font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 700; line-height: 1.1; color: var(--white); margin-bottom: .6rem; }
   .hero-sub { font-family: 'Playfair Display', serif; font-size: clamp(1rem, 2vw, 1.25rem); font-weight: 400; font-style: italic; color: var(--gold-lt); margin-bottom: 1.6rem; }
@@ -313,6 +328,9 @@
   /* RESPONSIVE */
   @media (max-width: 700px) {
     .about-grid, .edu-cert-grid { grid-template-columns: 1fr; }
+    .hero-inner { flex-direction: column-reverse; align-items: flex-start; gap: 2rem; }
+    .hero-photo-col { align-self: center; }
+    .hero-photo-col > div:first-child > div { width: 150px !important; height: 150px !important; }
     .form-two-col { grid-template-columns: 1fr; }
     .nav-links { gap: 1.2rem; }
     .btn-outline { margin-left: 0; margin-top: .75rem; display: block; text-align: center; }
@@ -348,23 +366,101 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-inner">
-    <span class="hero-eyebrow">Technical Writer · 6 Years Experience · Bengaluru, India</span>
-    <h1 class="hero-name">Dinesh Kumar M</h1>
-    <p class="hero-sub">"I enjoy making complex information easy to understand."</p>
-    <p class="hero-desc">
-      Specialising in API documentation, Docs-as-Code, DITA XML, and AI-assisted documentation. 
-      I build scalable documentation systems that improve usability, reduce support overhead, 
-      and help engineering teams ship faster.
-    </p>
-    <div class="hero-badges">
-      <span class="badge">API Documentation</span>
-      <span class="badge">Docs-as-Code</span>
-      <span class="badge">DITA XML</span>
-      <span class="badge">AI-Assisted Docs</span>
-      <span class="badge">Agile Environments</span>
+
+    <!-- LEFT: text content -->
+    <div class="hero-text">
+      <span class="hero-eyebrow">Technical Writer · 6 Years Experience · Bengaluru, India</span>
+      <h1 class="hero-name">Dinesh Kumar M</h1>
+      <p class="hero-sub">"I enjoy making complex information easy to understand."</p>
+      <p class="hero-desc">
+        Specialising in API documentation, Docs-as-Code, DITA XML, and AI-assisted documentation.
+        I build scalable documentation systems that improve usability, reduce support overhead,
+        and help engineering teams ship faster.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">API Documentation</span>
+        <span class="badge">Docs-as-Code</span>
+        <span class="badge">DITA XML</span>
+        <span class="badge">AI-Assisted Docs</span>
+        <span class="badge">Agile Environments</span>
+      </div>
+      <a class="btn btn-gold" href="#work">View My Work</a>
+      <a class="btn btn-outline" href="#contact">Get In Touch</a>
     </div>
-    <a class="btn btn-gold" href="#work">View My Work</a>
-    <a class="btn btn-outline" href="#contact">Get In Touch</a>
+
+    <!-- RIGHT: photo + signature -->
+    <div class="hero-photo-col">
+
+      <!-- Circular photo -->
+      <div style="position:relative;">
+        <div style="width:200px;height:200px;border-radius:50%;
+                    border:3px solid var(--gold);
+                    box-shadow:0 0 0 8px rgba(201,168,76,.12),
+                               0 0 0 16px rgba(201,168,76,.05),
+                               0 16px 48px rgba(0,0,0,.5);
+                    overflow:hidden;">
+          <img src="dinesh_photo.jpg" alt="Dinesh Kumar M"
+               style="width:100%;height:100%;object-fit:cover;
+                      object-position:center top;display:block;">
+        </div>
+        <!-- Green availability dot -->
+        <span style="position:absolute;bottom:10px;right:10px;
+                     width:18px;height:18px;border-radius:50%;
+                     background:#22c55e;border:3px solid #0F1E3C;
+                     display:block;box-shadow:0 0 8px rgba(34,197,94,.6);"></span>
+      </div>
+
+      <!-- Name + role under photo -->
+      <div style="text-align:center;">
+        <div style="font-family:'Playfair Display',serif;font-size:1rem;
+                    font-weight:700;color:var(--white);margin-bottom:.25rem;">
+          Dinesh Kumar M
+        </div>
+        <div style="font-size:.72rem;color:var(--gold);text-transform:uppercase;
+                    letter-spacing:.14em;font-weight:600;">
+          Technical Writer
+        </div>
+      </div>
+
+      <!-- Thin divider -->
+      <div style="width:36px;height:2px;background:rgba(201,168,76,.35);border-radius:2px;"></div>
+
+      <!-- Feather + ink icons -->
+      <div style="display:flex;align-items:center;justify-content:center;
+                  gap:8px;opacity:.65;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+             stroke="var(--gold-lt)" stroke-width="1.5"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
+          <line x1="16" y1="8" x2="2" y2="22"/>
+          <line x1="17.5" y1="15" x2="9" y2="15"/>
+        </svg>
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none"
+             stroke="var(--gold-lt)" stroke-width="1.5"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M8 2h8v4H8z"/>
+          <path d="M6 6h12l1 14H5L6 6z"/>
+          <path d="M10 11v5M14 11v5"/>
+          <path d="M5 10h14"/>
+        </svg>
+      </div>
+
+      <!-- Signature image -->
+      <div style="background:rgba(255,255,255,.04);border-radius:8px;
+                  padding:.7rem 1.2rem;border:1px solid rgba(255,255,255,.08);
+                  width:220px;text-align:center;">
+        <img src="dinesh_signature.png" alt="M Dinesh Kumar signature"
+             style="max-width:190px;height:auto;display:block;margin:0 auto;
+                    filter:brightness(1.2) contrast(1.1);
+                    mix-blend-mode:lighten;opacity:.9;">
+      </div>
+      <div style="font-size:.68rem;color:rgba(255,255,255,.28);
+                  letter-spacing:.1em;text-transform:uppercase;margin-top:-.6rem;">
+        Signature
+      </div>
+
+    </div><!-- end hero-photo-col -->
+
   </div>
 </section>
 
@@ -374,76 +470,10 @@
   <div class="section-title">About Me</div>
   <div class="divider"></div>
   <div class="about-grid">
-    <div class="about-card" style="display:flex;flex-direction:column;align-items:center;gap:0;padding:2rem 1.8rem;">
-
-      <!-- Profile photo circle -->
-      <div style="position:relative;margin-bottom:1.4rem;">
-        <div style="width:160px;height:160px;border-radius:50%;
-                    border:3px solid var(--gold);
-                    box-shadow:0 0 0 6px rgba(201,168,76,.15), 0 10px 32px rgba(0,0,0,.4);
-                    overflow:hidden;flex-shrink:0;">
-          <img src="dinesh_photo.jpg" alt="Dinesh Kumar M"
-               style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
-        </div>
-        <!-- Online indicator dot -->
-        <span style="position:absolute;bottom:8px;right:8px;
-                     width:16px;height:16px;border-radius:50%;
-                     background:#22c55e;border:2.5px solid #0F1E3C;
-                     display:block;"></span>
-      </div>
-
-      <!-- Name & role label -->
-      <div style="text-align:center;margin-bottom:1.4rem;">
-        <div style="font-family:'Playfair Display',serif;font-size:1.1rem;
-                    font-weight:700;color:var(--white);line-height:1.2;
-                    margin-bottom:.3rem;">Dinesh Kumar M</div>
-        <div style="font-size:.75rem;color:var(--gold);text-transform:uppercase;
-                    letter-spacing:.14em;font-weight:600;">Technical Writer</div>
-      </div>
-
-      <!-- Divider -->
-      <div style="width:40px;height:2px;background:rgba(201,168,76,.4);
-                  border-radius:2px;margin-bottom:1.4rem;"></div>
-
-      <!-- Signature block -->
-      <div style="text-align:center;width:100%;">
-        <!-- Feather + ink bottle icon row -->
-        <div style="display:flex;align-items:center;justify-content:center;
-                    gap:8px;margin-bottom:.8rem;opacity:.7;">
-          <!-- Feather quill SVG -->
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
-               stroke="var(--gold-lt)" stroke-width="1.5"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/>
-            <line x1="16" y1="8" x2="2" y2="22"/>
-            <line x1="17.5" y1="15" x2="9" y2="15"/>
-          </svg>
-          <!-- Ink bottle SVG -->
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-               stroke="var(--gold-lt)" stroke-width="1.5"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 2h8v4H8z"/>
-            <path d="M6 6h12l1 14H5L6 6z"/>
-            <path d="M10 11v5M14 11v5"/>
-            <path d="M5 10h14"/>
-          </svg>
-        </div>
-        <!-- Signature image -->
-        <div style="background:rgba(255,255,255,.04);border-radius:8px;
-                    padding:.8rem 1rem;border:1px solid rgba(255,255,255,.08);">
-          <img src="dinesh_signature.png" alt="M Dinesh Kumar signature"
-               style="max-width:180px;height:auto;display:block;margin:0 auto;
-                      filter:brightness(1.15) contrast(1.1);
-                      mix-blend-mode:lighten;opacity:.92;">
-        </div>
-        <div style="font-size:.7rem;color:rgba(255,255,255,.3);
-                    margin-top:.5rem;letter-spacing:.08em;text-transform:uppercase;">
-          Signature
-        </div>
-      </div>
-
-      <!-- Contact info -->
-      <div class="contact-info" style="width:100%;margin-top:1.4rem;">
+    <div class="about-card">
+      <p>"I enjoy making complex information easy to understand — from intricate API flows to day-to-day user guides."</p>
+      <div class="signature">— Dinesh Kumar M</div>
+      <div class="contact-info">
         <p>📞 <a href="tel:+919944488432">+91 99444 88432</a></p>
         <p>✉️ <a href="mailto:palmydinesh@gmail.com">palmydinesh@gmail.com</a></p>
       </div>
