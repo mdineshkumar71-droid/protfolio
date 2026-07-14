@@ -321,6 +321,7 @@
     .release-stats { gap: 1rem; }
     .pdf-modal { height: 95vh; }
   }
+  @keyframes spin { to { transform: rotate(360deg); } }
   @media (prefers-reduced-motion: reduce) { .card, .btn, .skill-block { transition: none; } }
 </style>
 </head>
@@ -782,48 +783,21 @@
         <button class="modal-btn-close" onclick="closePdfModal()" title="Close">✕</button>
       </div>
     </div>
-    <div class="pdf-modal-body" style="position:relative;">
-      <object id="pdfObject"
-              data=""
-              type="application/pdf"
-              style="width:100%;height:100%;display:block;background:#f4f6f9;">
-        <!-- Fallback when browser blocks inline PDF -->
-        <div id="pdfFallback" style="display:flex;flex-direction:column;
-             align-items:center;justify-content:center;height:100%;
-             background:#1a2840;color:#e8edf4;text-align:center;padding:2rem;gap:1.2rem;">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none"
-               stroke="#c9a84c" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-            <polyline points="14 2 14 8 20 8"/>
-            <line x1="16" y1="13" x2="8" y2="13"/>
-            <line x1="16" y1="17" x2="8" y2="17"/>
-          </svg>
-          <div>
-            <p style="font-size:1rem;font-weight:600;color:#e8edf4;margin-bottom:.5rem;">
-              PDF preview blocked by your browser
-            </p>
-            <p style="font-size:.88rem;color:#8a9ab8;margin-bottom:1.4rem;">
-              Some browsers restrict inline PDF display. Use the buttons below to view it.
-            </p>
-            <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;">
-              <a id="pdfOpenTab" href="NovaSuite_Release_26_3_0.pdf" target="_blank"
-                 rel="noopener"
-                 style="background:#c9a84c;color:#0f1e3c;padding:.65rem 1.4rem;
-                        border-radius:6px;font-weight:700;font-size:.88rem;
-                        text-decoration:none;text-transform:uppercase;letter-spacing:.04em;">
-                Open in New Tab
-              </a>
-              <a href="NovaSuite_Release_26_3_0.pdf" download
-                 style="border:1.5px solid rgba(201,168,76,.5);color:#e8c96a;
-                        padding:.63rem 1.2rem;border-radius:6px;font-weight:600;
-                        font-size:.85rem;text-decoration:none;
-                        text-transform:uppercase;letter-spacing:.03em;">
-                Download PDF
-              </a>
-            </div>
-          </div>
-        </div>
-      </object>
+    <div class="pdf-modal-body" style="position:relative;background:#525659;">
+      <!-- Loading spinner shown while iframe loads -->
+      <div id="pdfLoading" style="position:absolute;inset:0;display:flex;flex-direction:column;
+           align-items:center;justify-content:center;background:#1a2840;z-index:2;gap:1rem;">
+        <div style="width:44px;height:44px;border:3px solid rgba(201,168,76,.2);
+                    border-top-color:#c9a84c;border-radius:50%;
+                    animation:spin .8s linear infinite;"></div>
+        <p style="color:#8a9ab8;font-size:.88rem;">Loading PDF…</p>
+      </div>
+      <iframe id="pdfFrame"
+              src=""
+              style="width:100%;height:100%;border:none;display:block;"
+              onload="document.getElementById('pdfLoading').style.display='none';"
+              title="NovaSuite Release Notes">
+      </iframe>
     </div>
     <div class="pdf-modal-footer">
       <p>Viewing: NovaSuite_Release_26_3_0.pdf</p>
@@ -835,15 +809,20 @@
 <script>
   function openPdfModal() {
     const modal = document.getElementById('pdfModal');
-    const obj   = document.getElementById('pdfObject');
-    const PDF   = 'NovaSuite_Release_26_3_0.pdf';
-    // Set data on object if not already loaded
-    if (!obj.data || obj.data === window.location.href) {
-      obj.data = PDF;
+    const frame = document.getElementById('pdfFrame');
+    const loading = document.getElementById('pdfLoading');
+
+    // Build absolute URL to the PDF (needed for Google Docs Viewer)
+    const pdfPath = 'NovaSuite_Release_26_3_0.pdf';
+    const absUrl  = new URL(pdfPath, window.location.href).href;
+
+    // Use Google Docs Viewer — works on all browsers, no plugin needed
+    const viewerUrl = 'https://docs.google.com/viewer?embedded=true&url=' + encodeURIComponent(absUrl);
+
+    if (frame.src !== viewerUrl) {
+      loading.style.display = 'flex';   // show spinner
+      frame.src = viewerUrl;
     }
-    // Also update the open-in-tab fallback link
-    const tabLink = document.getElementById('pdfOpenTab');
-    if (tabLink) tabLink.href = PDF;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
