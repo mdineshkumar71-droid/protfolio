@@ -49,10 +49,10 @@
   .hero-desc { font-size: 1.05rem; color: var(--steel); max-width: 600px; line-height: 1.8; margin-bottom: 2.2rem; }
   .hero-badges { display: flex; flex-wrap: wrap; gap: .6rem; margin-bottom: 2.2rem; }
   .badge { background: rgba(201,168,76,.15); border: 1px solid rgba(201,168,76,.4); color: var(--gold-lt); font-size: .78rem; font-weight: 500; padding: .3rem .9rem; border-radius: 20px; }
-  .btn { display: inline-block; text-decoration: none; padding: .75rem 2rem; border-radius: var(--radius); font-size: .9rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; transition: transform .15s, box-shadow .15s; }
+  .btn { display: inline-block; text-decoration: none; padding: .75rem 2rem; border-radius: var(--radius); font-size: .9rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; transition: transform .15s, box-shadow .15s; cursor: pointer; border: none; font-family: 'Inter', sans-serif; }
   .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
   .btn-gold { background: var(--gold); color: var(--navy); }
-  .btn-outline { border: 2px solid var(--gold); color: var(--gold); margin-left: 1rem; }
+  .btn-outline { border: 2px solid var(--gold); color: var(--gold); margin-left: 1rem; background: transparent; }
   .btn-outline:hover { background: var(--gold); color: var(--navy); }
 
   /* SECTIONS */
@@ -99,6 +99,164 @@
   .card p { color: var(--muted); font-size: .93rem; line-height: 1.7; flex: 1; }
   .card-tags { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: .5rem; }
   .tag { background: var(--steel); color: var(--slate); font-size: .75rem; font-weight: 500; padding: .25rem .75rem; border-radius: 20px; }
+
+  /* FEATURED CARD - Release Notes */
+  .card-featured {
+    background: var(--navy);
+    border: none;
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow .2s, transform .2s;
+    grid-column: span 2;
+  }
+  .card-featured:hover { box-shadow: 0 12px 36px rgba(15,30,60,.35); transform: translateY(-3px); }
+  .card-featured::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-lt) 50%, var(--gold) 100%);
+  }
+  .card-featured .card-type { color: var(--gold-lt); }
+  .card-featured h3 { color: var(--white); font-size: 1.3rem; margin-bottom: .8rem; }
+  .card-featured p { color: var(--steel); flex: 1; }
+  .card-featured .tag { background: rgba(201,168,76,.15); border: 1px solid rgba(201,168,76,.3); color: var(--gold-lt); }
+
+  /* Preview strip inside featured card */
+  .release-preview {
+    display: flex; gap: 8px;
+    margin: 1.4rem 0;
+    padding: 14px;
+    background: rgba(255,255,255,.05);
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,.08);
+    overflow: hidden;
+  }
+  .preview-page {
+    flex-shrink: 0;
+    width: 68px; height: 92px;
+    background: #1a3a5c;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,.4);
+  }
+  .preview-page:first-child { background: linear-gradient(160deg, #0d1f35 0%, #0d1f35 45%, #0078c8 45%, #0078c8 55%, #1a3a5c 55%); }
+  .preview-page:not(:first-child) { background: #fff; }
+  .preview-page .pg-header { height: 10px; background: #1a3a5c; display: flex; align-items: center; padding: 0 4px; gap: 2px; }
+  .preview-page .pg-header span { display: block; width: 16px; height: 4px; background: #4db8ff; border-radius: 1px; }
+  .preview-page .pg-lines { padding: 4px; display: flex; flex-direction: column; gap: 2px; }
+  .preview-page .pg-lines i { display: block; height: 2px; background: #ddd; border-radius: 1px; }
+  .preview-page .pg-lines i:nth-child(1) { width: 80%; background: #1a3a5c; }
+  .preview-page .pg-lines i:nth-child(2) { width: 100%; }
+  .preview-page .pg-lines i:nth-child(3) { width: 90%; }
+  .preview-page .pg-lines i:nth-child(4) { width: 70%; }
+  .preview-page .pg-lines i:nth-child(5) { width: 100%; }
+  .preview-page .pg-table { margin: 3px 4px; background: #1a3a5c22; border-radius: 1px; height: 20px; }
+  .preview-label { font-size: .72rem; color: rgba(255,255,255,.3); margin-top: 6px; text-align: center; }
+  .release-stats { display: flex; gap: 1.4rem; margin-bottom: 1rem; }
+  .release-stat { text-align: center; }
+  .release-stat .num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); line-height: 1; }
+  .release-stat .lbl { font-size: .72rem; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .08em; margin-top: 2px; }
+
+  .card-actions { display: flex; gap: .8rem; margin-top: 1.4rem; align-items: center; flex-wrap: wrap; }
+  .btn-view {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--gold); color: var(--navy);
+    padding: .65rem 1.4rem; border-radius: var(--radius);
+    font-size: .88rem; font-weight: 700; text-decoration: none;
+    letter-spacing: .04em; text-transform: uppercase;
+    transition: transform .15s, box-shadow .15s;
+    cursor: pointer; border: none; font-family: 'Inter', sans-serif;
+  }
+  .btn-view:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.3); }
+  .btn-view svg { width: 15px; height: 15px; }
+  .btn-dl {
+    display: inline-flex; align-items: center; gap: .5rem;
+    border: 1.5px solid rgba(201,168,76,.5); color: var(--gold-lt);
+    padding: .63rem 1.2rem; border-radius: var(--radius);
+    font-size: .85rem; font-weight: 600; text-decoration: none;
+    letter-spacing: .03em; text-transform: uppercase;
+    transition: border-color .15s, background .15s;
+    background: transparent;
+  }
+  .btn-dl:hover { border-color: var(--gold); background: rgba(201,168,76,.08); }
+  .btn-dl svg { width: 14px; height: 14px; }
+
+  /* PDF MODAL */
+  .pdf-modal-overlay {
+    display: none;
+    position: fixed; inset: 0; z-index: 999;
+    background: rgba(8, 15, 30, .88);
+    backdrop-filter: blur(6px);
+    align-items: center; justify-content: center;
+    padding: 20px;
+  }
+  .pdf-modal-overlay.open { display: flex; }
+  .pdf-modal {
+    background: var(--navy);
+    border-radius: 10px;
+    width: 100%; max-width: 940px;
+    height: 90vh;
+    display: flex; flex-direction: column;
+    box-shadow: 0 24px 80px rgba(0,0,0,.7);
+    overflow: hidden;
+    border: 1px solid rgba(201,168,76,.2);
+    animation: modalIn .25s ease;
+  }
+  @keyframes modalIn { from { opacity:0; transform: scale(.96) translateY(12px); } to { opacity:1; transform: none; } }
+  .pdf-modal-header {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 14px 20px;
+    background: rgba(0,0,0,.3);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    flex-shrink: 0;
+  }
+  .pdf-modal-header .doc-icon {
+    width: 34px; height: 34px; border-radius: 6px;
+    background: var(--gold); display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .pdf-modal-header .doc-icon svg { width: 18px; height: 18px; color: var(--navy); }
+  .pdf-modal-title { flex: 1; }
+  .pdf-modal-title h4 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); line-height: 1.2; }
+  .pdf-modal-title span { font-size: .78rem; color: rgba(255,255,255,.4); }
+  .pdf-modal-actions { display: flex; gap: .6rem; align-items: center; }
+  .modal-btn-dl {
+    display: inline-flex; align-items: center; gap: .4rem;
+    background: rgba(201,168,76,.15); color: var(--gold-lt);
+    border: 1px solid rgba(201,168,76,.3);
+    padding: .45rem 1rem; border-radius: 5px;
+    font-size: .8rem; font-weight: 600; text-decoration: none;
+    transition: background .15s; cursor: pointer; font-family: 'Inter', sans-serif;
+  }
+  .modal-btn-dl:hover { background: rgba(201,168,76,.25); }
+  .modal-btn-close {
+    width: 34px; height: 34px; border-radius: 6px;
+    background: rgba(255,255,255,.08); border: none;
+    color: rgba(255,255,255,.6); font-size: 1.1rem;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background .15s, color .15s;
+  }
+  .modal-btn-close:hover { background: rgba(255,255,255,.15); color: white; }
+  .pdf-modal-body { flex: 1; padding: 0; overflow: hidden; }
+  .pdf-modal-body iframe {
+    width: 100%; height: 100%;
+    border: none; display: block;
+    background: #f4f6f9;
+  }
+  .pdf-modal-footer {
+    padding: 10px 20px;
+    background: rgba(0,0,0,.2);
+    border-top: 1px solid rgba(255,255,255,.06);
+    display: flex; align-items: center; justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .pdf-modal-footer p { font-size: .78rem; color: rgba(255,255,255,.35); }
+  .pdf-modal-footer a { color: var(--gold-lt); text-decoration: none; font-weight: 600; }
+  .pdf-modal-footer a:hover { text-decoration: underline; }
 
   /* SKILLS */
   #skills { background: var(--navy); }
@@ -159,6 +317,9 @@
     .nav-links { gap: 1.2rem; }
     .btn-outline { margin-left: 0; margin-top: .75rem; display: block; text-align: center; }
     section { padding: 60px 5%; }
+    .card-featured { grid-column: span 1; }
+    .release-stats { gap: 1rem; }
+    .pdf-modal { height: 95vh; }
   }
   @media (prefers-reduced-motion: reduce) { .card, .btn, .skill-block { transition: none; } }
 </style>
@@ -226,12 +387,12 @@
         developers can actually act on.
       </p>
       <ul class="highlight-list">
-        <li>6 years of technical writing across insurance, aerospace & SaaS</li>
+        <li>6 years of technical writing across insurance, aerospace &amp; SaaS</li>
         <li>Expert in Docs-as-Code: Git, GitHub, VS Code, Storybook, Markdown</li>
         <li>Structured authoring with DITA XML, Oxygen XML, Arbortext Editor</li>
         <li>Developed an AI-powered documentation agent to auto-generate content</li>
         <li>Led migration from Confluence to a full Docs-as-Code ecosystem</li>
-        <li>B.E. Aeronautical Engineering — J.J. College of Engineering & Technology</li>
+        <li>B.E. Aeronautical Engineering — J.J. College of Engineering &amp; Technology</li>
       </ul>
     </div>
   </div>
@@ -289,6 +450,86 @@
   <p class="section-intro">A selection of documentation projects representing my range across API references, user guides, structured authoring, and AI-assisted workflows.</p>
 
   <div class="cards-grid">
+
+    <!-- ★ FEATURED: Release Notes -->
+    <div class="card card-featured">
+      <div class="card-type">Release Notes · Insurance Platform</div>
+      <h3>NovaSuite Digital Platform — Release 26.3.0</h3>
+      <p>A full-cycle release notes document covering 9 product areas — ACE, JFC, UX Foundation, P&amp;C OOB, WC portals, Life OOB, and Data Suite. Produced as a publication-ready PDF with branded cover, per-page headers and footers, UI mockup screenshots, and structured feature narratives across 26 pages.</p>
+
+      <!-- Stats row -->
+      <div class="release-stats">
+        <div class="release-stat"><div class="num">26</div><div class="lbl">Pages</div></div>
+        <div class="release-stat"><div class="num">9</div><div class="lbl">Modules</div></div>
+        <div class="release-stat"><div class="num">24</div><div class="lbl">Screenshots</div></div>
+        <div class="release-stat"><div class="num">40+</div><div class="lbl">Features</div></div>
+      </div>
+
+      <!-- Mini page preview strip -->
+      <div class="release-preview">
+        <!-- Cover page mockup -->
+        <div style="flex-shrink:0;">
+          <div class="preview-page" style="background:linear-gradient(160deg,#0d1f35 0%,#0d1f35 45%,#0078c8 45%,#0078c8 55%,#1a3a5c 55%);"></div>
+          <div class="preview-label">Cover</div>
+        </div>
+        <!-- Content page mockups -->
+        <div style="flex-shrink:0;">
+          <div class="preview-page">
+            <div class="pg-header"><span></span></div>
+            <div class="pg-lines"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="pg-table"></div>
+          </div>
+          <div class="preview-label">TOC</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page">
+            <div class="pg-header"><span></span></div>
+            <div class="pg-lines"><i style="background:#0078c8;width:60%;"></i><i></i><i></i><i style="background:#0078c8;width:50%;"></i><i></i></div>
+          </div>
+          <div class="preview-label">ACE</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page">
+            <div class="pg-header"><span></span></div>
+            <div class="pg-lines"><i style="background:#0078c8;width:40%;"></i><i></i><i></i></div>
+            <div style="margin:3px 4px;background:#1a3a5c22;border-radius:1px;height:32px;"></div>
+          </div>
+          <div class="preview-label">JFC</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page">
+            <div class="pg-header"><span></span></div>
+            <div class="pg-lines"><i style="background:#0078c8;width:45%;"></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="preview-label">Life OOB</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page" style="background:linear-gradient(200deg,#0d1f35 0%,#1a3a5c 40%,#0078c8 70%,#0056a0 100%);"></div>
+          <div class="preview-label">End</div>
+        </div>
+      </div>
+
+      <div class="card-tags">
+        <span class="tag">Release Notes</span>
+        <span class="tag">Insurance Platform</span>
+        <span class="tag">PDF Deliverable</span>
+        <span class="tag">Branded Design</span>
+        <span class="tag">Agile Sprint Docs</span>
+      </div>
+
+      <div class="card-actions">
+        <button class="btn-view" onclick="openPdfModal()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          View Work
+        </button>
+        <a class="btn-dl" href="NovaSuite_Release_26_3_0.pdf" download="NovaSuite_Release_26_3_0.pdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
+        </a>
+      </div>
+    </div>
+
+    <!-- Remaining cards -->
     <div class="card">
       <div class="card-type">API Documentation</div>
       <h3>Insurance Platform API Reference</h3>
@@ -325,11 +566,12 @@
     </div>
 
     <div class="card">
-      <div class="card-type">Visual & Video Docs</div>
+      <div class="card-type">Visual &amp; Video Docs</div>
       <h3>Interactive Documentation Suite</h3>
       <p>Created visual and interactive documentation using Draw.io diagrams, Figma-based analysis, and video walkthroughs via Clipchamp and Camtasia — enhancing comprehension for both technical and non-technical audiences.</p>
       <div class="card-tags"><span class="tag">Draw.io</span><span class="tag">Camtasia</span><span class="tag">Clipchamp</span></div>
     </div>
+
   </div>
 </section>
 
@@ -339,50 +581,33 @@
   <div class="section-title">Skills &amp; Tools</div>
   <div class="divider"></div>
   <p class="section-intro">End-to-end expertise across the full documentation lifecycle — from structured authoring to Docs-as-Code pipelines and AI-assisted workflows.</p>
-
   <div class="skills-grid">
     <div class="skill-block">
       <h4>Authoring Tools</h4>
       <ul>
-        <li>Adobe RoboHelp</li>
-        <li>MadCap Flare</li>
-        <li>Adobe FrameMaker</li>
-        <li>Arbortext Editor</li>
-        <li>Oxygen XML</li>
-        <li>MS Word</li>
+        <li>Adobe RoboHelp</li><li>MadCap Flare</li><li>Adobe FrameMaker</li>
+        <li>Arbortext Editor</li><li>Oxygen XML</li><li>MS Word</li>
       </ul>
     </div>
     <div class="skill-block">
       <h4>Docs-as-Code</h4>
       <ul>
-        <li>Git &amp; GitHub</li>
-        <li>VS Code</li>
-        <li>Storybook</li>
-        <li>Markdown / HTML</li>
-        <li>CCMS</li>
-        <li>Confluence</li>
+        <li>Git &amp; GitHub</li><li>VS Code</li><li>Storybook</li>
+        <li>Markdown / HTML</li><li>CCMS</li><li>Confluence</li>
       </ul>
     </div>
     <div class="skill-block">
       <h4>Structured Authoring</h4>
       <ul>
-        <li>DITA XML</li>
-        <li>Information Architecture</li>
-        <li>Simplified Technical English</li>
-        <li>XML Reuse Strategies</li>
-        <li>Content Modelling</li>
-        <li>JIRA / Agile workflows</li>
+        <li>DITA XML</li><li>Information Architecture</li><li>Simplified Technical English</li>
+        <li>XML Reuse Strategies</li><li>Content Modelling</li><li>JIRA / Agile workflows</li>
       </ul>
     </div>
     <div class="skill-block">
       <h4>Visual &amp; Video</h4>
       <ul>
-        <li>TechSmith Snagit</li>
-        <li>TechSmith Camtasia</li>
-        <li>Clip Champ</li>
-        <li>MS Visio</li>
-        <li>Draw.io</li>
-        <li>Figma (review &amp; annotate)</li>
+        <li>TechSmith Snagit</li><li>TechSmith Camtasia</li><li>Clip Champ</li>
+        <li>MS Visio</li><li>Draw.io</li><li>Figma (review &amp; annotate)</li>
       </ul>
     </div>
   </div>
@@ -419,18 +644,9 @@
     </div>
     <div>
       <h4 style="font-family:'Playfair Display',serif;color:var(--navy);font-size:1.15rem;margin-bottom:1.2rem;">Certifications</h4>
-      <div class="cert-item">
-        <span class="cert-icon">✦</span>
-        <p>Technical Writing Course <span>by Tech Total Systems</span></p>
-      </div>
-      <div class="cert-item">
-        <span class="cert-icon">✦</span>
-        <p>The Art of API Documentation <span>from Udemy</span></p>
-      </div>
-      <div class="cert-item">
-        <span class="cert-icon">✦</span>
-        <p>Prompt Engineering <span>from Coddy</span></p>
-      </div>
+      <div class="cert-item"><span class="cert-icon">✦</span><p>Technical Writing Course <span>by Tech Total Systems</span></p></div>
+      <div class="cert-item"><span class="cert-icon">✦</span><p>The Art of API Documentation <span>from Udemy</span></p></div>
+      <div class="cert-item"><span class="cert-icon">✦</span><p>Prompt Engineering <span>from Coddy</span></p></div>
     </div>
   </div>
 </section>
@@ -441,22 +657,12 @@
   <div class="section-title">Get In Touch</div>
   <div class="divider"></div>
   <p class="section-intro">Open to freelance contracts, consulting engagements, and full-time opportunities. I typically respond within one business day.</p>
-
   <div class="contact-wrap">
     <div class="form-two-col">
-      <div class="form-row">
-        <label for="fname">First Name</label>
-        <input type="text" id="fname" placeholder="Alex" />
-      </div>
-      <div class="form-row">
-        <label for="lname">Last Name</label>
-        <input type="text" id="lname" placeholder="Smith" />
-      </div>
+      <div class="form-row"><label for="fname">First Name</label><input type="text" id="fname" placeholder="Alex"/></div>
+      <div class="form-row"><label for="lname">Last Name</label><input type="text" id="lname" placeholder="Smith"/></div>
     </div>
-    <div class="form-row">
-      <label for="email">Email Address</label>
-      <input type="email" id="email" placeholder="alex@company.com" />
-    </div>
+    <div class="form-row"><label for="email">Email Address</label><input type="email" id="email" placeholder="alex@company.com"/></div>
     <div class="form-row">
       <label for="project">Project Type</label>
       <select id="project">
@@ -470,10 +676,7 @@
         <option>Other</option>
       </select>
     </div>
-    <div class="form-row">
-      <label for="message">Message</label>
-      <textarea id="message" placeholder="Tell me about your project, timeline, and documentation challenges…"></textarea>
-    </div>
+    <div class="form-row"><label for="message">Message</label><textarea id="message" placeholder="Tell me about your project, timeline, and documentation challenges…"></textarea></div>
     <button class="btn btn-gold" onclick="handleSubmit()">Send Message</button>
     <p class="form-note">✦ Or email directly: palmydinesh@gmail.com · +91 99444 88432</p>
   </div>
@@ -485,7 +688,62 @@
   <p style="margin-top:.5rem;font-size:.8rem;opacity:.6;">API Documentation · Docs-as-Code · DITA XML · AI-Assisted Documentation</p>
 </footer>
 
+<!-- PDF MODAL -->
+<div class="pdf-modal-overlay" id="pdfModal" onclick="handleOverlayClick(event)">
+  <div class="pdf-modal">
+    <div class="pdf-modal-header">
+      <div class="doc-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <div class="pdf-modal-title">
+        <h4>NovaSuite Digital Platform — Release 26.3.0</h4>
+        <span>Release Notes · 26 pages · June 2026</span>
+      </div>
+      <div class="pdf-modal-actions">
+        <a class="modal-btn-dl" href="NovaSuite_Release_26_3_0.pdf" download="NovaSuite_Release_26_3_0.pdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </a>
+        <button class="modal-btn-close" onclick="closePdfModal()" title="Close">✕</button>
+      </div>
+    </div>
+    <div class="pdf-modal-body">
+      <iframe id="pdfFrame" src="" title="NovaSuite Release Notes PDF"></iframe>
+    </div>
+    <div class="pdf-modal-footer">
+      <p>Viewing: NovaSuite_Release_26_3_0.pdf</p>
+      <a href="NovaSuite_Release_26_3_0.pdf" target="_blank" rel="noopener">Open in new tab ↗</a>
+    </div>
+  </div>
+</div>
+
 <script>
+  function openPdfModal() {
+    const modal = document.getElementById('pdfModal');
+    const frame = document.getElementById('pdfFrame');
+    if (!frame.src || frame.src === window.location.href) {
+      frame.src = 'NovaSuite_Release_26_3_0.pdf';
+    }
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePdfModal() {
+    document.getElementById('pdfModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function handleOverlayClick(e) {
+    if (e.target === document.getElementById('pdfModal')) closePdfModal();
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePdfModal();
+  });
+
   function handleSubmit() {
     const email = document.getElementById('email').value.trim();
     const message = document.getElementById('message').value.trim();
