@@ -1075,19 +1075,68 @@
       </div>
     </div>
 
+    <!-- ★ DITA Authoring Sample — upgraded to featured card -->
+    <div class="card card-featured">
+      <div class="card-type">Structured Authoring · DITA XML</div>
+      <h3>Insurance Portal User Guides (DITA)</h3>
+      <p>Designed and maintained structured user guides for an Insurance Portal using DITA XML and Information Architecture principles. The sample below demonstrates a full DITA task topic — <em>How to File a Claim</em> — including context, prerequisites, numbered steps with substeps, step results, notes, and post-requisites, authored to OASIS DITA 1.3 standards.</p>
+
+      <div class="release-stats">
+        <div class="release-stat"><div class="num">3</div><div class="lbl">Topic Types</div></div>
+        <div class="release-stat"><div class="num">9</div><div class="lbl">Steps</div></div>
+        <div class="release-stat"><div class="num">DITA</div><div class="lbl">Standard</div></div>
+        <div class="release-stat"><div class="num">1.3</div><div class="lbl">Version</div></div>
+      </div>
+
+      <!-- Preview thumbnail — shows the published HTML output -->
+      <div class="storybook-screenshots">
+        <div class="sb-thumb" style="flex:1;" onclick="openImgLightbox('file_a_claim_preview.png','How to File a Claim — DITA task topic published output (InsurePortal Help Centre)')">
+          <img src="file_a_claim_published.html" alt="DITA task topic published output preview"
+               style="height:120px;object-fit:cover;object-position:top;background:#F7F9FC;"/>
+          <div class="sb-thumb-overlay">
+            <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+          </div>
+          <div class="sb-thumb-label">Published Output — How to File a Claim</div>
+        </div>
+      </div>
+      <p style="font-size:.78rem;color:rgba(255,255,255,.35);margin-top:-.4rem;margin-bottom:.8rem;">↑ Click to open the full published page · DITA source file available to download</p>
+
+      <div class="card-tags">
+        <span class="tag">DITA XML</span>
+        <span class="tag">Oxygen XML</span>
+        <span class="tag">Task Topic</span>
+        <span class="tag">IA Design</span>
+        <span class="tag">Insurance</span>
+      </div>
+
+      <div class="card-actions">
+        <button class="btn-view" onclick="openDitaPreview()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          View Sample
+        </button>
+        <a class="btn-dl" href="file_a_claim_task.dita" download="file_a_claim_task.dita">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download DITA Source
+        </a>
+      </div>
+    </div>
+
     <!-- Plain cards — no resource yet -->
     <div class="card">
       <div class="card-type">AI-Powered Tool</div>
       <h3>AI Documentation Agent</h3>
       <p>Designed and developed an AI-powered agent that analyses code repositories and auto-generates structured technical documentation, significantly reducing manual effort and improving consistency across releases.</p>
       <div class="card-tags"><span class="tag">AI / LLM</span><span class="tag">Automation</span><span class="tag">Prompt Engineering</span></div>
-    </div>
-
-    <div class="card">
-      <div class="card-type">Structured Authoring</div>
-      <h3>Insurance Portal User Guides (DITA)</h3>
-      <p>Designed and maintained structured user guides for an Insurance Portal using DITA XML and Information Architecture principles — enabling scalable, reusable content across multiple product releases.</p>
-      <div class="card-tags"><span class="tag">DITA XML</span><span class="tag">Oxygen XML</span><span class="tag">IA Design</span></div>
     </div>
 
     <div class="card">
@@ -1300,6 +1349,11 @@
 </div>
 
 <script>
+  /* ── DITA preview — opens published HTML in new tab ── */
+  function openDitaPreview() {
+    window.open('file_a_claim_published.html', '_blank');
+  }
+
   /* ════════════════════════════════════════
      IMAGE LIGHTBOX
   ════════════════════════════════════════ */
