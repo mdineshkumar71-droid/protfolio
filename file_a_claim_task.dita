@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+
+<!--
+  Topic Type  : Task
+  Product     : InsurePortal — Customer Portal
+  Version     : 3.2
+  Author      : Dinesh Kumar M
+  Created     : 2026-07-15
+  Modified    : 2026-07-15
+  Status      : Draft
+  Description : Step-by-step procedure for filing a workers' compensation claim
+                through the InsurePortal Customer Portal.
+-->
+
+<task id="file_a_claim" xml:lang="en-US">
+
+  <title>How to File a Claim</title>
+
+  <shortdesc>
+    File a new insurance claim through the InsurePortal Customer Portal by providing
+    incident details, injured worker information, and supporting documentation.
+  </shortdesc>
+
+  <prolog>
+    <metadata>
+      <prodinfo>
+        <prodname>InsurePortal</prodname>
+        <vrmlist>
+          <vrm version="3" release="2" modification="0"/>
+        </vrmlist>
+      </prodinfo>
+      <category>Claims Management</category>
+      <keywords>
+        <keyword>file a claim</keyword>
+        <keyword>new claim</keyword>
+        <keyword>FNOL</keyword>
+        <keyword>first notice of loss</keyword>
+        <keyword>workers compensation</keyword>
+        <keyword>incident report</keyword>
+      </keywords>
+    </metadata>
+    <resourceid id="file_a_claim_task"/>
+  </prolog>
+
+  <taskbody>
+
+    <!-- ═══════════════════════════════════════════
+         CONTEXT
+         Explains when/why the user performs this task
+    ════════════════════════════════════════════════ -->
+    <context>
+      <p>
+        Use this procedure when a workplace injury or incident has occurred and you need
+        to submit a First Notice of Loss (FNOL) to initiate the claims process. Filing
+        promptly ensures that the claim is registered, assigned to a handler, and
+        processed within the required regulatory timeframe.
+      </p>
+      <p>
+        Claims filed through the portal are automatically linked to the relevant policy
+        and routed to the assigned claims handler within 24 hours of submission.
+      </p>
+    </context>
+
+    <!-- ═══════════════════════════════════════════
+         PREREQUISITES
+         Conditions that must be true before starting
+    ════════════════════════════════════════════════ -->
+    <prereq>
+      <p>Before you begin, ensure the following:</p>
+      <ul>
+        <li>You are logged in to the InsurePortal Customer Portal.</li>
+        <li>You have an active policy number for the employer associated with the incident.</li>
+        <li>You have the date of injury and basic details of the incident.</li>
+        <li>
+          Supporting documents are available (optional at submission but recommended):
+          <ul>
+            <li>Medical certificate or doctor's report</li>
+            <li>Incident or accident report</li>
+            <li>Witness statements (if applicable)</li>
+          </ul>
+        </li>
+      </ul>
+    </prereq>
+
+    <!-- ═══════════════════════════════════════════
+         STEPS
+         The numbered procedure
+    ════════════════════════════════════════════════ -->
+    <steps>
+
+      <step>
+        <cmd>
+          From the dashboard, click <uicontrol>Quick Launch</uicontrol> and select
+          <uicontrol>File a Claim</uicontrol>.
+        </cmd>
+        <info>
+          <p>
+            Alternatively, navigate to <menucascade>
+              <uicontrol>Explore</uicontrol>
+              <uicontrol>Policies</uicontrol>
+            </menucascade>, select the relevant policy, and click
+            <uicontrol>File First Report of Injury</uicontrol> from the policy actions bar.
+          </p>
+        </info>
+      </step>
+
+      <step>
+        <cmd>
+          On the <uicontrol>Policy Information</uicontrol> screen (Step 1 of 6),
+          enter the <uicontrol>Policy Number</uicontrol> and select the
+          <uicontrol>Date of Injury</uicontrol> using the date picker.
+        </cmd>
+        <info>
+          <note type="tip">
+            The policy number is printed on the policy certificate and in the
+            <uicontrol>My Policies</uicontrol> section of the portal dashboard.
+          </note>
+        </info>
+        <stepresult>
+          The system validates the policy number and confirms the employer name
+          associated with the policy.
+        </stepresult>
+      </step>
+
+      <step>
+        <cmd>
+          Click <uicontrol>Continue</uicontrol> to proceed to the
+          <uicontrol>Incident Details</uicontrol> screen (Step 2 of 6).
+        </cmd>
+      </step>
+
+      <step>
+        <cmd>
+          Enter the incident details:
+        </cmd>
+        <substeps>
+          <substep>
+            <cmd>
+              Select the <uicontrol>Time of Injury</uicontrol> from the time picker.
+            </cmd>
+          </substep>
+          <substep>
+            <cmd>
+              Select the <uicontrol>Jurisdiction of Loss</uicontrol> from the dropdown list.
+            </cmd>
+            <info>
+              <p>
+                The jurisdiction is typically the state or region where the incident occurred,
+                not where the employer is based.
+              </p>
+            </info>
+          </substep>
+          <substep>
+            <cmd>
+              Enter a brief description of the incident in the
+              <uicontrol>Incident Description</uicontrol> field.
+            </cmd>
+          </substep>
+        </substeps>
+        <stepresult>
+          The form validates the jurisdiction selection and enables the
+          <uicontrol>Next</uicontrol> button.
+        </stepresult>
+      </step>
+
+      <step>
+        <cmd>
+          Click <uicontrol>Next</uicontrol> and enter the injured worker's details on the
+          <uicontrol>Injured Worker</uicontrol> screen (Step 3 of 6):
+        </cmd>
+        <substeps>
+          <substep>
+            <cmd>Enter the worker's <uicontrol>First Name</uicontrol> and <uicontrol>Last Name</uicontrol>.</cmd>
+          </substep>
+          <substep>
+            <cmd>Enter the worker's <uicontrol>Date of Birth</uicontrol>.</cmd>
+          </substep>
+          <substep>
+            <cmd>
+              Enter the worker's <uicontrol>Social Security Number</uicontrol> (masked on screen).
+            </cmd>
+          </substep>
+        </substeps>
+      </step>
+
+      <step>
+        <cmd>
+          Complete the <uicontrol>Contact Information</uicontrol> screen (Step 4 of 6)
+          by entering the reporting person's name, phone number, and email address.
+        </cmd>
+        <info>
+          <note type="note">
+            Contact information is used by the claims handler to follow up if
+            additional details are required. This does not have to be the injured worker.
+          </note>
+        </info>
+      </step>
+
+      <step>
+        <cmd>
+          On the <uicontrol>Injury Details</uicontrol> screen (Step 5 of 6), provide
+          the nature of the injury:
+        </cmd>
+        <substeps>
+          <substep>
+            <cmd>
+              Select the <uicontrol>Nature of Injury</uicontrol> from the dropdown
+              (for example, Fracture, Laceration, Burn).
+            </cmd>
+          </substep>
+          <substep>
+            <cmd>
+              Select the <uicontrol>Part of Body Affected</uicontrol>.
+            </cmd>
+          </substep>
+          <substep>
+            <cmd>
+              Select the <uicontrol>Cause of Injury</uicontrol>
+              (for example, Fall from height, Machinery, Repetitive motion).
+            </cmd>
+          </substep>
+          <substep>
+            <cmd>
+              Attach any supporting documents by clicking
+              <uicontrol>Upload Document</uicontrol> and selecting the relevant files.
+            </cmd>
+            <info>
+              <note type="tip">
+                Supported file formats: PDF, JPG, PNG, DOCX. Maximum file size: 10 MB per file.
+                You can attach up to 5 documents.
+              </note>
+            </info>
+          </substep>
+        </substeps>
+      </step>
+
+      <step>
+        <cmd>
+          On the <uicontrol>Review and Submit</uicontrol> screen (Step 6 of 6),
+          review all entered information carefully.
+        </cmd>
+        <info>
+          <p>
+            To edit any section, click the <uicontrol>Edit</uicontrol> link next to
+            the relevant section heading. You will be taken back to that step without
+            losing data from other steps.
+          </p>
+          <note type="important">
+            Once submitted, the claim cannot be cancelled through the portal.
+            Contact your claims handler if a submitted claim needs to be withdrawn.
+          </note>
+        </info>
+      </step>
+
+      <step>
+        <cmd>
+          Click <uicontrol>Submit Claim</uicontrol> to file the claim.
+        </cmd>
+        <stepresult>
+          <p>
+            A confirmation screen displays the assigned <uicontrol>Claim Number</uicontrol>
+            and the name of the <uicontrol>Claims Handler</uicontrol>. A confirmation email
+            is sent to the contact email address provided in Step 4.
+          </p>
+        </stepresult>
+      </step>
+
+    </steps>
+
+    <!-- ═══════════════════════════════════════════
+         RESULT
+         What the user has accomplished
+    ════════════════════════════════════════════════ -->
+    <result>
+      <p>
+        The claim is filed and assigned a unique claim number. It is automatically linked
+        to the associated policy and routed to a claims handler. You can track the claim
+        status at any time by navigating to <menucascade>
+          <uicontrol>Explore</uicontrol>
+          <uicontrol>Claims</uicontrol>
+        </menucascade> and selecting the claim number.
+      </p>
+    </result>
+
+    <!-- ═══════════════════════════════════════════
+         POSTREQUISITES
+         What the user should do after this task
+    ════════════════════════════════════════════════ -->
+    <postreq>
+      <p>After filing the claim, consider completing the following actions:</p>
+      <ul>
+        <li>
+          <xref href="track_claim_status.dita">Track the claim status</xref> to monitor
+          progress and respond to any handler requests.
+        </li>
+        <li>
+          Upload additional supporting documents at any time from the
+          <uicontrol>Documents</uicontrol> tab within the claim details view.
+        </li>
+        <li>
+          Contact your assigned claims handler directly using the contact details
+          shown on the claim confirmation screen.
+        </li>
+      </ul>
+    </postreq>
+
+  </taskbody>
+
+</task>

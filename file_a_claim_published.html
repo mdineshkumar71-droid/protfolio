@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>How to File a Claim — InsurePortal Help</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --navy:   #0F1E3C;
+  --blue:   #0057A8;
+  --blue-lt:#E8F0FB;
+  --blue-bd:#BDD2F5;
+  --teal:   #006F7B;
+  --steel:  #E4EAF2;
+  --offwhite:#F7F9FC;
+  --text:   #1A2840;
+  --muted:  #4A5E78;
+  --white:  #FFFFFF;
+  --gold:   #B8860B;
+  --gold-bg:#FFFAEC;
+  --gold-bd:#F0D060;
+  --green:  #1A6B3C;
+  --green-bg:#EDF7F1;
+  --green-bd:#A8D8BC;
+  --amber:  #8A5000;
+  --amber-bg:#FFF6E8;
+  --amber-bd:#F5C878;
+  --red:    #8B1A1A;
+  --red-bg: #FFF0F0;
+  --red-bd: #F5B8B8;
+  --radius: 6px;
+  --shadow: 0 2px 12px rgba(15,30,60,.08);
+}
+body{font-family:'Segoe UI',Arial,sans-serif;font-size:15px;line-height:1.7;color:var(--text);background:var(--offwhite);}
+
+/* ── TOP BAR ── */
+.topbar{background:var(--navy);padding:0 2rem;height:54px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.3);}
+.topbar-left{display:flex;align-items:center;gap:.8rem;}
+.topbar-logo{font-weight:700;font-size:1.1rem;color:white;text-decoration:none;letter-spacing:.02em;}
+.topbar-logo span{color:#6BAAFF;}
+.topbar-divider{width:1px;height:20px;background:rgba(255,255,255,.2);}
+.topbar-section{font-size:.8rem;color:rgba(255,255,255,.5);letter-spacing:.06em;text-transform:uppercase;}
+.topbar-badge{background:rgba(107,170,255,.15);border:1px solid rgba(107,170,255,.3);color:#6BAAFF;font-size:.7rem;font-weight:600;padding:.2rem .6rem;border-radius:20px;letter-spacing:.05em;}
+
+/* ── BREADCRUMB ── */
+.breadcrumb{background:var(--white);border-bottom:1px solid var(--steel);padding:.6rem 2rem;font-size:.82rem;color:var(--muted);}
+.breadcrumb a{color:var(--blue);text-decoration:none;}
+.breadcrumb a:hover{text-decoration:underline;}
+.breadcrumb span{margin:0 .4rem;color:var(--steel);}
+
+/* ── LAYOUT ── */
+.page-wrap{display:flex;max-width:1200px;margin:0 auto;gap:0;}
+
+/* ── SIDEBAR ── */
+.sidebar{width:240px;flex-shrink:0;padding:1.8rem 0 2rem;position:sticky;top:54px;height:calc(100vh - 54px);overflow-y:auto;border-right:1px solid var(--steel);background:var(--white);}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--steel);}
+.sidebar-heading{font-size:.65rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);padding:.4rem 1.4rem;margin-top:1rem;}
+.sidebar-link{display:block;padding:.42rem 1.4rem;font-size:.83rem;color:var(--muted);text-decoration:none;border-left:2px solid transparent;transition:background .12s,color .12s;}
+.sidebar-link:hover{background:var(--offwhite);color:var(--blue);}
+.sidebar-link.active{color:var(--blue);border-left-color:var(--blue);background:var(--blue-lt);font-weight:600;}
+.sidebar-link.sub{padding-left:2.2rem;font-size:.8rem;}
+
+/* ── MAIN ── */
+.main{flex:1;min-width:0;padding:2.4rem 2.8rem 4rem;}
+.topic-meta{display:flex;align-items:center;gap:.8rem;margin-bottom:1.4rem;flex-wrap:wrap;}
+.meta-badge{font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.22rem .65rem;border-radius:20px;}
+.badge-task{background:#E8F4FF;color:#005FA3;}
+.badge-product{background:var(--steel);color:var(--muted);}
+.topic-title{font-size:1.9rem;font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:.6rem;}
+.topic-shortdesc{font-size:1.02rem;color:var(--muted);line-height:1.75;margin-bottom:2rem;padding-bottom:1.4rem;border-bottom:1px solid var(--steel);}
+
+/* ── SECTION HEADINGS ── */
+h2.section-h{font-size:1.05rem;font-weight:700;color:var(--navy);margin:1.8rem 0 .8rem;padding-bottom:.4rem;border-bottom:1px solid var(--steel);}
+p{margin-bottom:.8rem;}
+
+/* ── NOTES / CALLOUTS ── */
+.note{display:flex;gap:.8rem;border-radius:var(--radius);padding:.9rem 1.1rem;margin:1rem 0;font-size:.9rem;line-height:1.65;}
+.note-icon{flex-shrink:0;width:18px;height:18px;margin-top:.1rem;}
+.note p{margin:0;}
+.note-tip    {background:var(--green-bg); border:1px solid var(--green-bd);}
+.note-note   {background:var(--blue-lt);  border:1px solid var(--blue-bd);}
+.note-important{background:var(--amber-bg);border:1px solid var(--amber-bd);}
+.note-warning{background:var(--red-bg);   border:1px solid var(--red-bd);}
+.note-tip     .note-label{color:var(--green);font-weight:700;}
+.note-note    .note-label{color:var(--blue);font-weight:700;}
+.note-important .note-label{color:var(--amber);font-weight:700;}
+.note-warning .note-label{color:var(--red);font-weight:700;}
+
+/* ── PREREQ LIST ── */
+.prereq-list,.result-list{list-style:none;padding:0;}
+.prereq-list li,.result-list li{padding:.3rem 0 .3rem 1.4rem;position:relative;color:var(--text);}
+.prereq-list li::before,.result-list li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:700;}
+.prereq-list ul{margin-top:.4rem;padding-left:1rem;}
+.prereq-list ul li::before{content:'–';color:var(--muted);}
+
+/* ── STEPS ── */
+.steps-container{counter-reset:step;margin:1.2rem 0;}
+.step{display:flex;gap:1.2rem;margin-bottom:1.4rem;padding-bottom:1.4rem;border-bottom:1px solid var(--steel);}
+.step:last-child{border-bottom:none;}
+.step-num{
+  min-width:32px;height:32px;border-radius:50%;
+  background:var(--blue);color:white;
+  font-weight:700;font-size:.85rem;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;margin-top:.1rem;
+}
+.step-body{flex:1;}
+.step-cmd{font-size:.97rem;color:var(--text);margin-bottom:.5rem;font-weight:500;}
+.step-info{margin-top:.5rem;}
+.step-result{
+  background:var(--green-bg);border:1px solid var(--green-bd);
+  border-radius:var(--radius);padding:.6rem .9rem;
+  font-size:.88rem;color:var(--green);margin-top:.6rem;
+}
+.step-result::before{content:'Result: ';font-weight:700;}
+
+/* ── SUBSTEPS ── */
+.substeps{list-style:none;padding:0;margin:.6rem 0 .4rem 0;counter-reset:substep;}
+.substeps li{
+  display:flex;gap:.8rem;padding:.35rem 0;
+  font-size:.93rem;color:var(--text);
+  counter-increment:substep;
+}
+.substeps li::before{
+  content:counter(substep,lower-alpha) '.';
+  color:var(--blue);font-weight:700;font-size:.85rem;
+  min-width:18px;flex-shrink:0;margin-top:.15rem;
+}
+
+/* ── UI CONTROLS ── */
+.uicontrol{
+  font-family:'Segoe UI',Arial,sans-serif;font-weight:600;font-size:.88em;
+  background:var(--steel);color:var(--navy);
+  padding:.1rem .45rem;border-radius:3px;
+  border:1px solid #C5D0DF;white-space:nowrap;
+}
+.menucascade{font-family:'Segoe UI',Arial,sans-serif;font-size:.9em;font-weight:500;color:var(--navy);}
+.menucascade .sep{color:var(--muted);margin:0 .2rem;font-weight:400;}
+
+/* ── CODE / FILEPATH ── */
+code{font-family:'Consolas','Courier New',monospace;font-size:.85em;background:var(--steel);padding:.1rem .4rem;border-radius:3px;color:var(--navy);}
+
+/* ── POSTREQ LINKS ── */
+.postreq-list{list-style:none;padding:0;}
+.postreq-list li{padding:.35rem 0 .35rem 1.4rem;position:relative;}
+.postreq-list li::before{content:'→';position:absolute;left:0;color:var(--blue);font-weight:700;}
+.postreq-list a{color:var(--blue);text-decoration:none;}
+.postreq-list a:hover{text-decoration:underline;}
+
+/* ── FOOTER ── */
+.doc-footer{border-top:1px solid var(--steel);padding:1.2rem 0 0;margin-top:2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;}
+.doc-footer p{font-size:.78rem;color:var(--muted);}
+.feedback-btns{display:flex;gap:.5rem;}
+.fb-btn{font-size:.78rem;padding:.3rem .8rem;border-radius:20px;border:1px solid var(--steel);background:var(--white);color:var(--muted);cursor:pointer;transition:border-color .15s,color .15s;}
+.fb-btn:hover{border-color:var(--blue);color:var(--blue);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .main{padding:1.6rem 1.2rem 3rem;}
+  .topbar{padding:0 1rem;}
+  .breadcrumb{padding:.6rem 1rem;}
+  .topic-title{font-size:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<header class="topbar">
+  <div class="topbar-left">
+    <a class="topbar-logo" href="#">Insure<span>Portal</span></a>
+    <div class="topbar-divider"></div>
+    <span class="topbar-section">Help Centre</span>
+  </div>
+  <span class="topbar-badge">v3.2</span>
+</header>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <a href="#">Home</a>
+  <span>›</span>
+  <a href="#">Claims Management</a>
+  <span>›</span>
+  <a href="#">Filing a Claim</a>
+  <span>›</span>
+  How to File a Claim
+</nav>
+
+<div class="page-wrap">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" aria-label="Section navigation">
+    <div class="sidebar-heading">Claims Management</div>
+    <a class="sidebar-link active" href="#">How to File a Claim</a>
+    <a class="sidebar-link" href="#">Track Claim Status</a>
+    <a class="sidebar-link" href="#">Upload Claim Documents</a>
+    <a class="sidebar-link" href="#">Submit a Claim Earnings Report</a>
+    <a class="sidebar-link" href="#">Claim Status Reference</a>
+
+    <div class="sidebar-heading">Policies</div>
+    <a class="sidebar-link" href="#">View Policy Details</a>
+    <a class="sidebar-link" href="#">Make a Payment</a>
+    <a class="sidebar-link" href="#">Renew a Policy</a>
+    <a class="sidebar-link" href="#">Download Policy Documents</a>
+
+    <div class="sidebar-heading">Account</div>
+    <a class="sidebar-link" href="#">Update Contact Information</a>
+    <a class="sidebar-link" href="#">Manage Users</a>
+    <a class="sidebar-link" href="#">Reset Password</a>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <main class="main" id="main-content">
+
+    <!-- TOPIC META -->
+    <div class="topic-meta">
+      <span class="meta-badge badge-task">Task</span>
+      <span class="meta-badge badge-product">Claims Management</span>
+      <span class="meta-badge badge-product">InsurePortal v3.2</span>
+    </div>
+
+    <!-- TITLE & SHORT DESC -->
+    <h1 class="topic-title">How to File a Claim</h1>
+    <p class="topic-shortdesc">
+      File a new insurance claim through the InsurePortal Customer Portal by providing
+      incident details, injured worker information, and supporting documentation.
+    </p>
+
+    <!-- CONTEXT -->
+    <h2 class="section-h">Overview</h2>
+    <p>
+      Use this procedure when a workplace injury or incident has occurred and you need
+      to submit a First Notice of Loss (FNOL) to initiate the claims process. Filing
+      promptly ensures that the claim is registered, assigned to a handler, and processed
+      within the required regulatory timeframe.
+    </p>
+    <p>
+      Claims filed through the portal are automatically linked to the relevant policy
+      and routed to the assigned claims handler within 24 hours of submission.
+    </p>
+
+    <!-- PREREQUISITES -->
+    <h2 class="section-h">Before You Begin</h2>
+    <ul class="prereq-list">
+      <li>You are logged in to the InsurePortal Customer Portal.</li>
+      <li>You have an active policy number for the employer associated with the incident.</li>
+      <li>You have the date of injury and basic details of the incident.</li>
+      <li>
+        Supporting documents are available (optional at submission but recommended):
+        <ul>
+          <li>Medical certificate or doctor's report</li>
+          <li>Incident or accident report</li>
+          <li>Witness statements (if applicable)</li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- STEPS -->
+    <h2 class="section-h">Steps</h2>
+    <div class="steps-container">
+
+      <!-- Step 1 -->
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <p class="step-cmd">
+            From the dashboard, click <span class="uicontrol">Quick Launch</span> and
+            select <span class="uicontrol">File a Claim</span>.
+          </p>
+          <div class="step-info">
+            <p>
+              Alternatively, navigate to
+              <span class="menucascade">
+                <span class="uicontrol">Explore</span><span class="sep">›</span><span class="uicontrol">Policies</span>
+              </span>,
+              select the relevant policy, and click
+              <span class="uicontrol">File First Report of Injury</span>
+              from the policy actions bar.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <p class="step-cmd">
+            On the <span class="uicontrol">Policy Information</span> screen (Step 1 of 6),
+            enter the <span class="uicontrol">Policy Number</span> and select the
+            <span class="uicontrol">Date of Injury</span> using the date picker.
+          </p>
+          <div class="note note-tip">
+            <svg class="note-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            <p><span class="note-label">Tip: </span>The policy number is printed on the policy certificate and in the <span class="uicontrol">My Policies</span> section of the portal dashboard.</p>
+          </div>
+          <div class="step-result">
+            The system validates the policy number and confirms the employer name associated with the policy.
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <p class="step-cmd">
+            Click <span class="uicontrol">Continue</span> to proceed to the
+            <span class="uicontrol">Incident Details</span> screen (Step 2 of 6).
+          </p>
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <p class="step-cmd">Enter the incident details:</p>
+          <ol class="substeps">
+            <li>Select the <span class="uicontrol">Time of Injury</span> from the time picker.</li>
+            <li>
+              Select the <span class="uicontrol">Jurisdiction of Loss</span> from the dropdown list.
+              <div class="note note-note" style="margin-top:.5rem;">
+                <svg class="note-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" d="M12 16v-4M12 8h.01"/></svg>
+                <p><span class="note-label">Note: </span>The jurisdiction is typically the state or region where the incident occurred, not where the employer is based.</p>
+              </div>
+            </li>
+            <li>Enter a brief description of the incident in the <span class="uicontrol">Incident Description</span> field.</li>
+          </ol>
+          <div class="step-result">
+            The form validates the jurisdiction selection and enables the <span class="uicontrol">Next</span> button.
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5 -->
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <p class="step-cmd">
+            Click <span class="uicontrol">Next</span> and enter the injured worker's
+            details on the <span class="uicontrol">Injured Worker</span> screen (Step 3 of 6):
+          </p>
+          <ol class="substeps">
+            <li>Enter the worker's <span class="uicontrol">First Name</span> and <span class="uicontrol">Last Name</span>.</li>
+            <li>Enter the worker's <span class="uicontrol">Date of Birth</span>.</li>
+            <li>Enter the worker's <span class="uicontrol">Social Security Number</span> (masked on screen).</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Step 6 -->
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-body">
+          <p class="step-cmd">
+            Complete the <span class="uicontrol">Contact Information</span> screen
+            (Step 4 of 6) by entering the reporting person's name, phone number,
+            and email address.
+          </p>
+          <div class="note note-note">
+            <svg class="note-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path stroke-linecap="round" d="M12 16v-4M12 8h.01"/></svg>
+            <p><span class="note-label">Note: </span>Contact information is used by the claims handler to follow up if additional details are required. This does not have to be the injured worker.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 7 -->
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-body">
+          <p class="step-cmd">
+            On the <span class="uicontrol">Injury Details</span> screen (Step 5 of 6),
+            provide the nature of the injury:
+          </p>
+          <ol class="substeps">
+            <li>Select the <span class="uicontrol">Nature of Injury</span> from the dropdown (for example, Fracture, Laceration, Burn).</li>
+            <li>Select the <span class="uicontrol">Part of Body Affected</span>.</li>
+            <li>Select the <span class="uicontrol">Cause of Injury</span> (for example, Fall from height, Machinery, Repetitive motion).</li>
+            <li>
+              Attach supporting documents by clicking <span class="uicontrol">Upload Document</span> and selecting the relevant files.
+              <div class="note note-tip" style="margin-top:.5rem;">
+                <svg class="note-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                <p><span class="note-label">Tip: </span>Supported formats: PDF, JPG, PNG, DOCX. Maximum 10 MB per file. Up to 5 documents.</p>
+              </div>
+            </li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Step 8 -->
+      <div class="step">
+        <div class="step-num">8</div>
+        <div class="step-body">
+          <p class="step-cmd">
+            On the <span class="uicontrol">Review and Submit</span> screen (Step 6 of 6),
+            review all entered information carefully.
+          </p>
+          <div class="step-info">
+            <p>
+              To edit any section, click the <span class="uicontrol">Edit</span> link
+              next to the relevant section heading. You will be taken back to that step
+              without losing data from other steps.
+            </p>
+          </div>
+          <div class="note note-important">
+            <svg class="note-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+            <p><span class="note-label">Important: </span>Once submitted, the claim cannot be cancelled through the portal. Contact your claims handler if a submitted claim needs to be withdrawn.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 9 -->
+      <div class="step">
+        <div class="step-num">9</div>
+        <div class="step-body">
+          <p class="step-cmd">
+            Click <span class="uicontrol">Submit Claim</span> to file the claim.
+          </p>
+          <div class="step-result">
+            A confirmation screen displays the assigned Claim Number and the name of the Claims Handler. A confirmation email is sent to the contact email address provided in Step 6.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end steps -->
+
+    <!-- RESULT -->
+    <h2 class="section-h">Result</h2>
+    <p>
+      The claim is filed and assigned a unique claim number. It is automatically linked
+      to the associated policy and routed to a claims handler. You can track the claim
+      status at any time by navigating to
+      <span class="menucascade">
+        <span class="uicontrol">Explore</span><span class="sep">›</span><span class="uicontrol">Claims</span>
+      </span>
+      and selecting the claim number.
+    </p>
+
+    <!-- POSTREQUISITES -->
+    <h2 class="section-h">Next Steps</h2>
+    <ul class="postreq-list">
+      <li><a href="#">Track the claim status</a> to monitor progress and respond to any handler requests.</li>
+      <li>Upload additional supporting documents at any time from the <span class="uicontrol">Documents</span> tab within the claim details view.</li>
+      <li>Contact your assigned claims handler directly using the contact details shown on the claim confirmation screen.</li>
+    </ul>
+
+    <!-- FOOTER -->
+    <div class="doc-footer">
+      <div>
+        <p>InsurePortal Help Centre · v3.2 · Last updated July 2026</p>
+        <p style="margin-top:.2rem;">Topic ID: <code>file_a_claim</code> · Author: Dinesh Kumar M</p>
+      </div>
+      <div>
+        <p style="margin-bottom:.4rem;font-size:.78rem;color:var(--muted);">Was this page helpful?</p>
+        <div class="feedback-btns">
+          <button class="fb-btn" onclick="this.textContent='👍 Thanks!';this.style.borderColor='var(--green)';this.style.color='var(--green)'">👍 Yes</button>
+          <button class="fb-btn" onclick="this.textContent='👎 Noted';this.style.borderColor='var(--red)';this.style.color='var(--red)'">👎 No</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+</body>
+</html>
