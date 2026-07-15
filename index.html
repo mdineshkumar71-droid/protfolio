@@ -1234,7 +1234,7 @@
 </footer>
 
 <!-- IMAGE LIGHTBOX -->
-<div class="img-lightbox-overlay" id="imgLightbox" onclick="handleImgOverlayClick(event)">
+<div class="img-lightbox-overlay" id="imgLightbox">
   <div class="img-lightbox">
     <button class="img-lightbox-close" onclick="closeImgLightbox()" title="Close">✕</button>
     <img id="lightboxImg" src="" alt=""/>
@@ -1243,7 +1243,7 @@
 </div>
 
 <!-- PDF MODAL -->
-<div class="pdf-modal-overlay" id="pdfModal" onclick="handleOverlayClick(event)">
+<div class="pdf-modal-overlay" id="pdfModal">
   <div class="pdf-modal">
     <div class="pdf-modal-header">
       <div class="doc-icon">
@@ -1287,99 +1287,102 @@
 </div>
 
 <script>
-  /* ── Image lightbox ── */
+  /* ════════════════════════════════════════
+     IMAGE LIGHTBOX
+  ════════════════════════════════════════ */
   function openImgLightbox(src, caption) {
-    var overlay = document.getElementById('imgLightbox');
     document.getElementById('lightboxImg').src = src;
     document.getElementById('lightboxCaption').textContent = caption || '';
-    overlay.classList.add('open');
+    document.getElementById('imgLightbox').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
   function closeImgLightbox() {
     document.getElementById('imgLightbox').classList.remove('open');
+    document.getElementById('lightboxImg').src = '';
     document.body.style.overflow = '';
   }
-  function handleImgOverlayClick(e) {
-    if (e.target === document.getElementById('imgLightbox')) closeImgLightbox();
-  }
-
-  /* ── Hamburger nav ── */
-  var navToggle = document.getElementById('navToggle');
-  var navLinks  = document.getElementById('navLinks');
-  function closeNav() {
-    navToggle.classList.remove('open');
-    navLinks.classList.remove('open');
-    navToggle.setAttribute('aria-expanded', 'false');
-  }
-  navToggle.addEventListener('click', function() {
-    var isOpen = navLinks.classList.toggle('open');
-    navToggle.classList.toggle('open');
-    navToggle.setAttribute('aria-expanded', isOpen);
-  });
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('nav')) closeNav();
+  document.getElementById('imgLightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeImgLightbox();
   });
 
-  /* ── PDF Modal ── */
+  /* ════════════════════════════════════════
+     PDF MODAL
+  ════════════════════════════════════════ */
   var pdfDocs = {
-    rn: {
-      file: 'NovaSuite_Release_26_3_0.pdf',
-      title: 'NovaSuite Digital Platform — Release 26.3.0',
-      subtitle: 'Release Notes · 25 pages · June 2026'
-    },
-    ug: {
-      file: 'NovaSuite_WC_Agent_Portal_User_Guide.pdf',
-      title: 'NovaSuite WC Agent Portal — User Guide 25.8.0',
-      subtitle: 'User Guide · 27 pages · Feb 2026'
-    },
-    hc: {
-      file: 'HealthCheck_API_Reference.pdf',
-      title: 'Health Check API — Reference Documentation',
-      subtitle: 'API Reference · 7 sections · July 2026'
-    }
+    rn: { file: 'NovaSuite_Release_26_3_0.pdf',           title: 'NovaSuite Digital Platform — Release 26.3.0',     subtitle: 'Release Notes · 25 pages · June 2026' },
+    ug: { file: 'NovaSuite_WC_Agent_Portal_User_Guide.pdf', title: 'NovaSuite WC Agent Portal — User Guide 25.8.0',   subtitle: 'User Guide · 27 pages · Feb 2026' },
+    hc: { file: 'HealthCheck_API_Reference.pdf',           title: 'Health Check API — Reference Documentation',      subtitle: 'API Reference · 7 sections · July 2026' }
   };
 
   function openPdfModal(type) {
-    var doc = pdfDocs[type] || pdfDocs['rn'];
+    var doc     = pdfDocs[type] || pdfDocs['rn'];
     var modal   = document.getElementById('pdfModal');
     var embed   = document.getElementById('pdfEmbed');
     var loading = document.getElementById('pdfLoading');
-    var newTab  = document.getElementById('modalNewTab');
-    var dl      = document.getElementById('modalDownload');
 
     document.getElementById('modalTitle').textContent    = doc.title;
     document.getElementById('modalSubtitle').textContent = doc.subtitle;
     document.getElementById('modalFilename').textContent = 'Viewing: ' + doc.file;
-    dl.href     = doc.file;
-    dl.download = doc.file;
-    newTab.href = doc.file;
+    document.getElementById('modalDownload').href        = doc.file;
+    document.getElementById('modalDownload').setAttribute('download', doc.file);
+    document.getElementById('modalNewTab').href          = doc.file;
 
-    loading.style.display = 'flex';
     embed.src = '';
-    /* Small delay so loading spinner appears before the browser
-       starts rendering the PDF */
-    setTimeout(function() {
-      embed.src = doc.file;
-    }, 80);
+    loading.style.display = 'flex';
+    setTimeout(function() { embed.src = doc.file; }, 100);
 
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
   function closePdfModal() {
-    var embed = document.getElementById('pdfEmbed');
-    embed.src = '';          /* stop loading / free memory */
+    document.getElementById('pdfEmbed').src = '';
     document.getElementById('pdfModal').classList.remove('open');
     document.body.style.overflow = '';
   }
 
-  function handleOverlayClick(e) {
-    if (e.target === document.getElementById('pdfModal')) closePdfModal();
-  }
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closePdfModal(); closeImgLightbox(); }
+  document.getElementById('pdfModal').addEventListener('click', function(e) {
+    if (e.target === this) closePdfModal();
   });
+
+  /* ════════════════════════════════════════
+     ESCAPE KEY — closes whichever modal is open
+  ════════════════════════════════════════ */
+  document.addEventListener('keydown', function(e) {
+    if (e.key !== 'Escape') return;
+    if (document.getElementById('pdfModal').classList.contains('open'))   closePdfModal();
+    if (document.getElementById('imgLightbox').classList.contains('open')) closeImgLightbox();
+  });
+
+  /* ════════════════════════════════════════
+     HAMBURGER NAV
+  ════════════════════════════════════════ */
+  var navToggle = document.getElementById('navToggle');
+  var navLinks  = document.getElementById('navLinks');
+
+  if (navToggle && navLinks) {
+    function closeNav() {
+      navToggle.classList.remove('open');
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }
+    navToggle.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var isOpen = navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    /* Close nav on outside click — but don't interfere with other buttons */
+    document.addEventListener('click', function(e) {
+      if (navLinks.classList.contains('open') && !e.target.closest('nav')) {
+        closeNav();
+      }
+    });
+    /* Close nav when a link is tapped */
+    navLinks.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', closeNav);
+    });
+  }
 </script>
 </body>
 </html>
