@@ -115,7 +115,7 @@
   .card-tags { margin-top: 1.4rem; display: flex; flex-wrap: wrap; gap: .5rem; }
   .tag { background: var(--steel); color: var(--slate); font-size: .75rem; font-weight: 500; padding: .25rem .75rem; border-radius: 20px; }
 
-  /* FEATURED CARD - Release Notes */
+  /* FEATURED CARD - Release Notes / User Guide */
   .card-featured {
     background: var(--navy);
     border: none;
@@ -126,7 +126,6 @@
     position: relative;
     overflow: hidden;
     transition: box-shadow .2s, transform .2s;
-    grid-column: span 2;
   }
   .card-featured:hover { box-shadow: 0 12px 36px rgba(15,30,60,.35); transform: translateY(-3px); }
   .card-featured::before {
@@ -287,9 +286,29 @@
 
   /* ACHIEVEMENTS */
   #achievements { background: var(--offwhite); }
-  .achieve-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.4rem; }
-  .achieve-card { background: var(--white); border-radius: 8px; border-left: 4px solid var(--gold); padding: 1.6rem 1.8rem; box-shadow: 0 2px 10px rgba(0,0,0,.05); }
-  .achieve-card p { color: var(--text); font-size: .97rem; line-height: 1.7; }
+  .achieve-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.4rem; }
+  .achieve-card {
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--steel);
+    padding: 1.6rem 1.8rem 1.8rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,.04);
+    transition: box-shadow .2s, transform .2s;
+    display: flex; flex-direction: column; gap: .7rem;
+  }
+  .achieve-card:hover { box-shadow: 0 8px 24px rgba(15,30,60,.1); transform: translateY(-2px); }
+  .achieve-icon {
+    width: 40px; height: 40px; border-radius: 8px;
+    background: rgba(201,168,76,.12); border: 1px solid rgba(201,168,76,.25);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .achieve-icon svg { width: 20px; height: 20px; color: var(--gold); }
+  .achieve-title {
+    font-family: 'Playfair Display', serif;
+    font-size: .97rem; font-weight: 700;
+    color: var(--navy); line-height: 1.3;
+  }
+  .achieve-card p { color: var(--muted); font-size: .88rem; line-height: 1.65; margin: 0; }
 
   /* EDUCATION & CERTS */
   #education { background: var(--white); }
@@ -325,22 +344,152 @@
   footer { background: #080f1e; color: var(--steel); text-align: center; padding: 2.2rem 5%; font-size: .85rem; }
   footer span { color: var(--gold); }
 
-  /* RESPONSIVE */
-  @media (max-width: 700px) {
-    .about-grid, .edu-cert-grid { grid-template-columns: 1fr; }
-    .hero-inner { flex-direction: column-reverse; align-items: flex-start; gap: 2rem; }
-    .hero-photo-col { align-self: center; }
-    .hero-photo-col > div:first-child > div { width: 150px !important; height: 150px !important; }
-    .form-two-col { grid-template-columns: 1fr; }
-    .nav-links { gap: 1.2rem; }
-    .btn-outline { margin-left: 0; margin-top: .75rem; display: block; text-align: center; }
-    section { padding: 60px 5%; }
-    .card-featured { grid-column: span 1; }
-    .release-stats { gap: 1rem; }
-    .pdf-modal { height: 95vh; }
+  /* ─── HAMBURGER BUTTON (hidden on wide screens) ─── */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    z-index: 200;
   }
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: transform .25s, opacity .25s;
+  }
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ─── LAPTOP  1025px – 1280px ─── */
+  @media (max-width: 1280px) {
+    .hero-inner { gap: 2.5rem; }
+    .cards-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+  }
+
+  /* ─── TABLET  769px – 1024px ─── */
+  @media (max-width: 1024px) {
+    nav { padding: 0 4%; }
+    .nav-links { gap: 1.4rem; }
+    .nav-links a { font-size: .78rem; }
+
+    #hero { padding: 80px 4% 70px; }
+    .hero-inner { gap: 2rem; }
+    .hero-photo-col > div:first-child > div { width: 170px !important; height: 170px !important; }
+
+    .about-grid { grid-template-columns: 1fr 1.4fr; gap: 2.5rem; }
+    .edu-cert-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+    .cards-grid { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.4rem; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .achieve-grid { grid-template-columns: repeat(2, 1fr); }
+
+    section { padding: 72px 4%; }
+    .release-preview { overflow-x: auto; }
+  }
+
+  /* ─── LARGE MOBILE  481px – 768px ─── */
+  @media (max-width: 768px) {
+    /* Hamburger on */
+    .nav-toggle { display: flex; }
+    .nav-links {
+      position: fixed;
+      top: 62px; left: 0; right: 0;
+      background: var(--navy);
+      flex-direction: column;
+      gap: 0;
+      padding: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      box-shadow: 0 8px 24px rgba(0,0,0,.4);
+      z-index: 150;
+      list-style: none;
+    }
+    .nav-links.open {
+      max-height: 400px;
+      padding: .5rem 0 1rem;
+    }
+    .nav-links li { width: 100%; }
+    .nav-links a {
+      display: block;
+      padding: .9rem 5%;
+      font-size: .9rem;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    #hero { padding: 60px 5% 56px; }
+    .hero-inner { flex-direction: column; align-items: center; gap: 2.2rem; }
+    .hero-photo-col { align-self: center; }
+    .hero-photo-col > div:first-child > div { width: 160px !important; height: 160px !important; }
+    .hero-text { text-align: center; }
+    .hero-eyebrow { border-left: none; border-bottom: 2px solid var(--gold); padding-left: 0; padding-bottom: .4rem; }
+    .hero-badges { justify-content: center; }
+    .btn-outline { margin-left: .5rem; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .edu-cert-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+    .cards-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .achieve-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    section { padding: 60px 5%; }
+    .release-preview { overflow-x: auto; }
+    .release-stats { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .pdf-modal { height: 95vh; max-width: 100%; }
+    .pdf-modal-header { flex-wrap: wrap; gap: .6rem; }
+  }
+
+  /* ─── SMALL MOBILE  ≤ 480px ─── */
+  @media (max-width: 480px) {
+    nav { padding: 0 4%; }
+    .nav-brand { font-size: 1rem; }
+    .nav-brand img { width: 28px !important; height: 28px !important; }
+
+    #hero { padding: 48px 4% 48px; }
+    .hero-photo-col > div:first-child > div { width: 130px !important; height: 130px !important; }
+    .hero-photo-col > div:nth-child(5) { width: 180px !important; }  /* signature box */
+
+    .btn { padding: .65rem 1.4rem; font-size: .82rem; }
+    .btn-outline { margin-left: 0; margin-top: .6rem; display: inline-block; }
+
+    .about-card { padding: 1.8rem; }
+    .about-card p { font-size: .97rem; }
+
+    .skills-grid { grid-template-columns: 1fr; }
+    .achieve-grid { grid-template-columns: 1fr; }
+    .edu-cert-grid { grid-template-columns: 1fr; }
+
+    .exp-item { padding-left: 1.2rem; }
+    .exp-role { font-size: 1.05rem; }
+
+    .card { padding: 1.6rem; }
+    .card-featured { padding: 1.6rem; }
+
+    .release-stats { gap: .8rem; }
+    .release-stat .num { font-size: 1.2rem; }
+
+    .pdf-modal-header { padding: 10px 14px; }
+    .pdf-modal-title h4 { font-size: .88rem; }
+    .modal-btn-dl { display: none; }  /* hide download btn on tiny screens, keep close */
+
+    section { padding: 48px 4%; }
+    .section-title { font-size: clamp(1.4rem, 6vw, 2rem); }
+    .section-intro { font-size: .95rem; }
+
+    .contact-wrap { max-width: 100%; }
+  }
+
   @keyframes spin { to { transform: rotate(360deg); } }
-  @media (prefers-reduced-motion: reduce) { .card, .btn, .skill-block { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .card, .btn, .skill-block, .nav-links { transition: none; } }
 </style>
 </head>
 <body>
@@ -354,12 +503,15 @@
                 vertical-align:middle;display:inline-block;flex-shrink:0;">
     Dinesh Kumar M
   </a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#work">Work</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#contact">Contact</a></li>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="closeNav()">About</a></li>
+    <li><a href="#experience" onclick="closeNav()">Experience</a></li>
+    <li><a href="#work" onclick="closeNav()">Work</a></li>
+    <li><a href="#skills" onclick="closeNav()">Skills</a></li>
+    <li><a href="#contact" onclick="closeNav()">Contact</a></li>
   </ul>
 </nav>
 
@@ -367,28 +519,7 @@
 <section id="hero">
   <div class="hero-inner">
 
-    <!-- LEFT: text content -->
-    <div class="hero-text">
-      <span class="hero-eyebrow">Technical Writer · 6 Years Experience · Bengaluru, India</span>
-      <h1 class="hero-name">Dinesh Kumar M</h1>
-      <p class="hero-sub">"I enjoy making complex information easy to understand."</p>
-      <p class="hero-desc">
-        Specialising in API documentation, Docs-as-Code, DITA XML, and AI-assisted documentation.
-        I build scalable documentation systems that improve usability, reduce support overhead,
-        and help engineering teams ship faster.
-      </p>
-      <div class="hero-badges">
-        <span class="badge">API Documentation</span>
-        <span class="badge">Docs-as-Code</span>
-        <span class="badge">DITA XML</span>
-        <span class="badge">AI-Assisted Docs</span>
-        <span class="badge">Agile Environments</span>
-      </div>
-      <a class="btn btn-gold" href="#work">View My Work</a>
-      <a class="btn btn-outline" href="#contact">Get In Touch</a>
-    </div>
-
-    <!-- RIGHT: photo + signature -->
+    <!-- LEFT: photo + signature -->
     <div class="hero-photo-col">
 
       <!-- Circular photo -->
@@ -459,7 +590,38 @@
         Signature
       </div>
 
+      <!-- Contact info under signature -->
+      <div style="text-align:center;margin-top:.4rem;">
+        <div style="font-size:.8rem;margin-bottom:.3rem;">
+          <a href="tel:+919944488432" style="color:var(--gold-lt);text-decoration:none;">📞 +91 99444 88432</a>
+        </div>
+        <div style="font-size:.8rem;">
+          <a href="mailto:palmydinesh@gmail.com" style="color:var(--gold-lt);text-decoration:none;">✉ palmydinesh@gmail.com</a>
+        </div>
+      </div>
+
     </div><!-- end hero-photo-col -->
+
+    <!-- RIGHT: text content -->
+    <div class="hero-text">
+      <span class="hero-eyebrow">Technical Writer · 6 Years Experience · Bengaluru, India</span>
+      <h1 class="hero-name">Dinesh Kumar M</h1>
+      <p class="hero-sub">"I enjoy making complex information easy to understand."</p>
+      <p class="hero-desc">
+        Specialising in User Guides, Release Notes, API documentation, Docs-as-Code workflows,
+        and structured authoring using DITA XML. I build scalable documentation systems that
+        improve usability, reduce support overhead, and help engineering teams ship faster.
+      </p>
+      <div class="hero-badges">
+        <span class="badge">API Documentation</span>
+        <span class="badge">Docs-as-Code</span>
+        <span class="badge">DITA XML</span>
+        <span class="badge">AI-Assisted Docs</span>
+        <span class="badge">Agile Environments</span>
+      </div>
+      <a class="btn btn-gold" href="#work">View My Work</a>
+      <a class="btn btn-outline" href="#contact">Get In Touch</a>
+    </div>
 
   </div>
 </section>
@@ -480,17 +642,17 @@
     </div>
     <div class="about-body">
       <p>
-        I'm a Technical Writer with 6 years of experience specialising in API documentation, 
-        Docs-as-Code workflows, and structured authoring using DITA XML. Currently working as 
+        I'm a Technical Writer with 6 years of experience specialising in User Guides, Release Notes,
+        API documentation, Docs-as-Code workflows, and structured authoring using DITA XML. Currently working as
         a Consultant Technical Writer at Sapiens Technologies India Pvt Ltd.
       </p>
       <p>
-        My background spans insurance software, aerospace applications, and SaaS platforms — 
-        always focused on translating complex technical concepts into content that users and 
+        My background spans insurance software, SaaS platforms, Hardware Components, and Airbus applications —
+        always focused on translating complex technical concepts into content that users and
         developers can actually act on.
       </p>
       <ul class="highlight-list">
-        <li>6 years of technical writing across insurance, aerospace &amp; SaaS</li>
+        <li>6 years of technical writing across insurance, SaaS, and Hardware components</li>
         <li>Expert in Docs-as-Code: Git, GitHub, VS Code, Storybook, Markdown</li>
         <li>Structured authoring with DITA XML, Oxygen XML, Arbortext Editor</li>
         <li>Developed an AI-powered documentation agent to auto-generate content</li>
@@ -558,24 +720,22 @@
     <div class="card card-featured">
       <div class="card-type">Release Notes · Insurance Platform</div>
       <h3>NovaSuite Digital Platform — Release 26.3.0</h3>
-      <p>A full-cycle release notes document covering 9 product areas — ACE, JFC, UX Foundation, P&amp;C OOB, WC portals, Life OOB, and Data Suite. Produced as a publication-ready PDF with branded cover, per-page headers and footers, UI mockup screenshots, and structured feature narratives across 26 pages.</p>
+      <p>Full-cycle release notes covering 9 product areas — APEX, FLUX, UI Core, P&amp;C Suite, WorkerShield, LifeCover OOB (ROW &amp; NA), and Insight Portal. Produced as a publication-ready PDF with branded cover, per-page headers and footers, UI mockup screenshots, and structured feature narratives across 25 pages. Highlights include APEX MCP Server support, multi-branding in FLUX, VaultAuth-based IAM, enhanced beneficiary components, and the new Insight Portal admin capabilities.</p>
 
       <!-- Stats row -->
       <div class="release-stats">
-        <div class="release-stat"><div class="num">26</div><div class="lbl">Pages</div></div>
+        <div class="release-stat"><div class="num">25</div><div class="lbl">Pages</div></div>
         <div class="release-stat"><div class="num">9</div><div class="lbl">Modules</div></div>
-        <div class="release-stat"><div class="num">24</div><div class="lbl">Screenshots</div></div>
-        <div class="release-stat"><div class="num">40+</div><div class="lbl">Features</div></div>
+        <div class="release-stat"><div class="num">20+</div><div class="lbl">Screenshots</div></div>
+        <div class="release-stat"><div class="num">45+</div><div class="lbl">Features</div></div>
       </div>
 
       <!-- Mini page preview strip -->
       <div class="release-preview">
-        <!-- Cover page mockup -->
         <div style="flex-shrink:0;">
           <div class="preview-page" style="background:linear-gradient(160deg,#0d1f35 0%,#0d1f35 45%,#0078c8 45%,#0078c8 55%,#1a3a5c 55%);"></div>
           <div class="preview-label">Cover</div>
         </div>
-        <!-- Content page mockups -->
         <div style="flex-shrink:0;">
           <div class="preview-page">
             <div class="pg-header"><span></span></div>
@@ -589,7 +749,7 @@
             <div class="pg-header"><span></span></div>
             <div class="pg-lines"><i style="background:#0078c8;width:60%;"></i><i></i><i></i><i style="background:#0078c8;width:50%;"></i><i></i></div>
           </div>
-          <div class="preview-label">ACE</div>
+          <div class="preview-label">APEX</div>
         </div>
         <div style="flex-shrink:0;">
           <div class="preview-page">
@@ -597,7 +757,7 @@
             <div class="pg-lines"><i style="background:#0078c8;width:40%;"></i><i></i><i></i></div>
             <div style="margin:3px 4px;background:#1a3a5c22;border-radius:1px;height:32px;"></div>
           </div>
-          <div class="preview-label">JFC</div>
+          <div class="preview-label">FLUX</div>
         </div>
         <div style="flex-shrink:0;">
           <div class="preview-page">
@@ -618,10 +778,11 @@
         <span class="tag">PDF Deliverable</span>
         <span class="tag">Branded Design</span>
         <span class="tag">Agile Sprint Docs</span>
+        <span class="tag">June 2026</span>
       </div>
 
       <div class="card-actions">
-        <button class="btn-view" onclick="openPdfModal()">
+        <button class="btn-view" onclick="openPdfModal('rn')">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
           View Work
         </button>
@@ -632,12 +793,163 @@
       </div>
     </div>
 
-    <!-- Remaining cards -->
-    <div class="card">
-      <div class="card-type">API Documentation</div>
-      <h3>Insurance Platform API Reference</h3>
-      <p>Comprehensive API documentation covering endpoints, request/response schemas, authentication methods, and error handling guidelines for an insurance Journey Builder platform at Sapiens Technologies.</p>
-      <div class="card-tags"><span class="tag">REST API</span><span class="tag">OpenAPI</span><span class="tag">DITA XML</span></div>
+    <!-- ★ FEATURED: User Guide -->
+    <div class="card card-featured">
+      <div class="card-type">User Guide · Workers' Compensation</div>
+      <h3>NovaSuite WC Agent Portal — User Guide 25.8.0</h3>
+      <p>Complete reference guide for the NovaSuite Workers' Compensation Agent Portal — covering login, dashboard metrics, Quick Launch actions (FROI, Quick Quote, Create Quote), Explore data views, Commissions tracking, Communications hub, Resource Center, Reports, User Administration, and full 360° views for Policies, Claims, and Quotes across 27 pages.</p>
+
+      <!-- Stats row -->
+      <div class="release-stats">
+        <div class="release-stat"><div class="num">27</div><div class="lbl">Pages</div></div>
+        <div class="release-stat"><div class="num">13</div><div class="lbl">Sections</div></div>
+        <div class="release-stat"><div class="num">20</div><div class="lbl">Figures</div></div>
+        <div class="release-stat"><div class="num">WC</div><div class="lbl">Domain</div></div>
+      </div>
+
+      <!-- Mini page preview strip -->
+      <div class="release-preview">
+        <div style="flex-shrink:0;">
+          <div class="preview-page" style="background:linear-gradient(160deg,#0d1f35 0%,#0d1f35 45%,#0078c8 45%,#0078c8 55%,#1a3a5c 55%);"></div>
+          <div class="preview-label">Cover</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page">
+            <div class="pg-header"><span></span></div>
+            <div class="pg-lines"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="pg-table"></div>
+          </div>
+          <div class="preview-label">TOC</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page">
+            <div class="pg-header"><span></span></div>
+            <div class="pg-lines"><i style="background:#0078c8;width:55%;"></i><i></i><i></i><i style="background:#0078c8;width:45%;"></i><i></i></div>
+          </div>
+          <div class="preview-label">Login</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page">
+            <div class="pg-header"><span></span></div>
+            <div class="pg-lines"><i style="background:#0078c8;width:40%;"></i><i></i><i></i></div>
+            <div style="margin:3px 4px;background:#1a3a5c22;border-radius:1px;height:32px;"></div>
+          </div>
+          <div class="preview-label">Dashboard</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page">
+            <div class="pg-header"><span></span></div>
+            <div class="pg-lines"><i style="background:#0078c8;width:45%;"></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="preview-label">Claims 360</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page" style="background:linear-gradient(200deg,#0d1f35 0%,#1a3a5c 40%,#0078c8 70%,#0056a0 100%);"></div>
+          <div class="preview-label">End</div>
+        </div>
+      </div>
+
+      <div class="card-tags">
+        <span class="tag">User Guide</span>
+        <span class="tag">Workers' Compensation</span>
+        <span class="tag">Agent Portal</span>
+        <span class="tag">PDF Deliverable</span>
+        <span class="tag">Feb 2026</span>
+      </div>
+
+      <div class="card-actions">
+        <button class="btn-view" onclick="openPdfModal('ug')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          View Work
+        </button>
+        <a class="btn-dl" href="NovaSuite_WC_Agent_Portal_User_Guide.pdf" download="NovaSuite_WC_Agent_Portal_User_Guide.pdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
+        </a>
+      </div>
+    </div>
+
+    <!-- Health Check API card -->
+    <div class="card card-featured">
+      <div class="card-type">API Documentation · PII Management</div>
+      <h3>Health Check API — Reference Documentation</h3>
+      <p>A complete API reference document for the Health Check API — covering authentication, endpoint details, all three response scenarios (200 success, 304 not modified, 503 cron job down), response field definitions, and curl + JavaScript code examples. Produced as a clean, professional PDF.</p>
+
+      <div class="release-stats">
+        <div class="release-stat"><div class="num">7</div><div class="lbl">Sections</div></div>
+        <div class="release-stat"><div class="num">3</div><div class="lbl">Responses</div></div>
+        <div class="release-stat"><div class="num">GET</div><div class="lbl">Method</div></div>
+        <div class="release-stat"><div class="num">PDF</div><div class="lbl">Format</div></div>
+      </div>
+
+      <div class="release-preview">
+        <div style="flex-shrink:0;">
+          <div class="preview-page" style="background:#fff;">
+            <div class="pg-header" style="background:#1F4E79;"><span style="background:#fff;width:28px;"></span></div>
+            <div class="pg-lines"><i style="background:#1F4E79;width:70%;"></i><i style="width:90%;"></i><i style="width:60%;"></i></div>
+          </div>
+          <div class="preview-label">Cover</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page" style="background:#fff;">
+            <div class="pg-header" style="background:#1F4E79;"><span style="background:#fff;width:20px;"></span></div>
+            <div class="pg-lines"><i style="background:#1F4E79;width:50%;"></i><i></i><i style="width:80%;"></i><i></i></div>
+          </div>
+          <div class="preview-label">Auth</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page" style="background:#fff;">
+            <div class="pg-header" style="background:#1F4E79;"><span style="background:#fff;width:20px;"></span></div>
+            <div class="pg-lines"><i style="background:#1F4E79;width:40%;"></i><i></i></div>
+            <div class="pg-table" style="background:#F0F0F0;border:1px solid #ccc;margin:2px 4px;height:24px;"></div>
+          </div>
+          <div class="preview-label">Endpoint</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page" style="background:#fff;">
+            <div class="pg-header" style="background:#1F4E79;"><span style="background:#fff;width:20px;"></span></div>
+            <div style="margin:4px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:2px;height:14px;"></div>
+            <div style="margin:4px;background:#fffbeb;border:1px solid #fde68a;border-radius:2px;height:14px;"></div>
+            <div style="margin:4px;background:#fef2f2;border:1px solid #fecaca;border-radius:2px;height:14px;"></div>
+          </div>
+          <div class="preview-label">Responses</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page" style="background:#fff;">
+            <div class="pg-header" style="background:#1F4E79;"><span style="background:#fff;width:20px;"></span></div>
+            <div class="pg-lines"><i style="background:#1F4E79;width:45%;"></i><i></i></div>
+            <div class="pg-table" style="background:#F0F0F0;border:1px solid #ccc;margin:2px 4px;height:28px;"></div>
+          </div>
+          <div class="preview-label">Fields</div>
+        </div>
+        <div style="flex-shrink:0;">
+          <div class="preview-page" style="background:#fff;">
+            <div class="pg-header" style="background:#1F4E79;"><span style="background:#fff;width:20px;"></span></div>
+            <div class="pg-lines"><i style="background:#1F4E79;width:40%;"></i><i></i></div>
+            <div class="pg-table" style="background:#F0F0F0;border:1px solid #ccc;margin:2px 4px;height:22px;"></div>
+          </div>
+          <div class="preview-label">Code</div>
+        </div>
+      </div>
+
+      <div class="card-tags">
+        <span class="tag">API Reference</span>
+        <span class="tag">PII Management</span>
+        <span class="tag">PDF Deliverable</span>
+        <span class="tag">REST API</span>
+        <span class="tag">July 2026</span>
+      </div>
+
+      <div class="card-actions">
+        <button class="btn-view" onclick="openPdfModal('hc')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          View Work
+        </button>
+        <a class="btn-dl" href="HealthCheck_API_Reference.pdf" download="HealthCheck_API_Reference.pdf">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download PDF
+        </a>
+      </div>
     </div>
 
     <div class="card">
@@ -722,12 +1034,63 @@
   <div class="section-title">Key Achievements</div>
   <div class="divider"></div>
   <div class="achieve-grid">
-    <div class="achieve-card"><p>Led a successful transition to a Docs-as-Code ecosystem from Confluence, improving documentation scalability and version control across teams.</p></div>
-    <div class="achieve-card"><p>Developed an AI-based documentation automation system that significantly reduced manual documentation effort and improved content consistency.</p></div>
-    <div class="achieve-card"><p>Delivered consistent, high-quality documentation in high-velocity Agile environments with minimal rework and on-time delivery.</p></div>
-    <div class="achieve-card"><p>Enhanced user experience through structured, reusable, DITA-based content strategies enabling faster release cycles.</p></div>
-    <div class="achieve-card"><p>Reduced support tickets by improving documentation quality and clarity, freeing engineering teams to focus on feature development.</p></div>
-    <div class="achieve-card"><p>Produced region-specific, customer-facing release notes and PDF deliverables adhering to international localization standards.</p></div>
+
+    <div class="achieve-card">
+      <div class="achieve-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7"/></svg>
+      </div>
+      <div class="achieve-title">Docs-as-Code Ecosystem Migration</div>
+      <p>Led a full migration from Confluence to a Docs-as-Code ecosystem using Storybook, VS Code, and GitHub — improving documentation scalability, version control, and team-wide maintainability.</p>
+    </div>
+
+    <div class="achieve-card">
+      <div class="achieve-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+      </div>
+      <div class="achieve-title">AI-Powered Documentation Agent</div>
+      <p>Designed and built an AI-powered agent that analyses code repositories and auto-generates structured technical content — significantly reducing manual effort and improving consistency across releases.</p>
+    </div>
+
+    <div class="achieve-card">
+      <div class="achieve-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"/></svg>
+      </div>
+      <div class="achieve-title">Interactive Storybook UI Mocks</div>
+      <p>Created interactive UI mockups embedded in Storybook Markdown pages — enabling users to explore and interact with live components directly within the documentation, bridging the gap between docs and product.</p>
+    </div>
+
+    <div class="achieve-card">
+      <div class="achieve-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+      </div>
+      <div class="achieve-title">Agile On-Time Delivery</div>
+      <p>Delivered consistent, high-quality documentation across high-velocity Agile sprints — with minimal rework, on-time delivery, and tight alignment to evolving product releases and sprint cycles.</p>
+    </div>
+
+    <div class="achieve-card">
+      <div class="achieve-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"/></svg>
+      </div>
+      <div class="achieve-title">DITA-Based Reusable Content Strategy</div>
+      <p>Architected structured, DITA-based content strategies for insurance portal user guides — enabling scalable, reusable documentation across multiple product releases and reducing authoring overhead.</p>
+    </div>
+
+    <div class="achieve-card">
+      <div class="achieve-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/></svg>
+      </div>
+      <div class="achieve-title">Localisation-Ready Release Notes</div>
+      <p>Produced region-specific, customer-facing release notes and branded PDF deliverables — adhering to international localisation standards and serving multiple markets simultaneously.</p>
+    </div>
+
+    <div class="achieve-card">
+      <div class="achieve-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      </div>
+      <div class="achieve-title">Reduced Support Overhead</div>
+      <p>Improved documentation quality and clarity across user guides and API references — directly reducing support tickets and freeing engineering teams to focus on feature development rather than fielding user queries.</p>
+    </div>
+
   </div>
 </section>
 
@@ -750,6 +1113,7 @@
       <div class="cert-item"><span class="cert-icon">✦</span><p>Technical Writing Course <span>by Tech Total Systems</span></p></div>
       <div class="cert-item"><span class="cert-icon">✦</span><p>The Art of API Documentation <span>from Udemy</span></p></div>
       <div class="cert-item"><span class="cert-icon">✦</span><p>Prompt Engineering <span>from Coddy</span></p></div>
+      <div class="cert-item"><span class="cert-icon">✦</span><p>AI Fluency: Framework and Foundations <span>from Anthropic</span></p></div>
     </div>
   </div>
 </section>
@@ -761,26 +1125,7 @@
   <div class="divider"></div>
   <p class="section-intro">Open to freelance contracts, consulting engagements, and full-time opportunities. I typically respond within one business day.</p>
   <div class="contact-wrap">
-    <div class="form-two-col">
-      <div class="form-row"><label for="fname">First Name</label><input type="text" id="fname" placeholder="Alex"/></div>
-      <div class="form-row"><label for="lname">Last Name</label><input type="text" id="lname" placeholder="Smith"/></div>
-    </div>
-    <div class="form-row"><label for="email">Email Address</label><input type="email" id="email" placeholder="alex@company.com"/></div>
-    <div class="form-row">
-      <label for="project">Project Type</label>
-      <select id="project">
-        <option value="">Select an option…</option>
-        <option>API / Developer Documentation</option>
-        <option>User Guide / Help Centre</option>
-        <option>DITA XML / Structured Authoring</option>
-        <option>Docs-as-Code Setup</option>
-        <option>AI-Assisted Documentation</option>
-        <option>Full-Time Role</option>
-        <option>Other</option>
-      </select>
-    </div>
-    <div class="form-row"><label for="message">Message</label><textarea id="message" placeholder="Tell me about your project, timeline, and documentation challenges…"></textarea></div>
-    <button class="btn btn-gold" onclick="handleSubmit()">Send Message</button>
+    <a class="btn btn-gold" href="mailto:palmydinesh@gmail.com?subject=Enquiry%20from%20Portfolio" style="display:inline-block;text-decoration:none;margin-bottom:1.4rem;">Get In Touch</a>
     <p class="form-note">✦ Or email directly: palmydinesh@gmail.com · +91 99444 88432</p>
   </div>
 </section>
@@ -802,11 +1147,11 @@
         </svg>
       </div>
       <div class="pdf-modal-title">
-        <h4>NovaSuite Digital Platform — Release 26.3.0</h4>
-        <span>Release Notes · 26 pages · June 2026</span>
+        <h4 id="modalTitle">NovaSuite Digital Platform — Release 26.3.0</h4>
+        <span id="modalSubtitle">Release Notes · 25 pages · June 2026</span>
       </div>
       <div class="pdf-modal-actions">
-        <a class="modal-btn-dl" href="NovaSuite_Release_26_3_0.pdf" download="NovaSuite_Release_26_3_0.pdf">
+        <a class="modal-btn-dl" id="modalDownload" href="NovaSuite_Release_26_3_0.pdf" download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:14px;height:14px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           Download
         </a>
@@ -814,7 +1159,6 @@
       </div>
     </div>
     <div class="pdf-modal-body" style="position:relative;background:#525659;">
-      <!-- Loading spinner shown while iframe loads -->
       <div id="pdfLoading" style="position:absolute;inset:0;display:flex;flex-direction:column;
            align-items:center;justify-content:center;background:#1a2840;z-index:2;gap:1rem;">
         <div style="width:44px;height:44px;border:3px solid rgba(201,168,76,.2);
@@ -826,33 +1170,72 @@
               src=""
               style="width:100%;height:100%;border:none;display:block;"
               onload="document.getElementById('pdfLoading').style.display='none';"
-              title="NovaSuite Release Notes">
+              title="PDF Preview">
       </iframe>
     </div>
     <div class="pdf-modal-footer">
-      <p>Viewing: NovaSuite_Release_26_3_0.pdf</p>
-      <a href="NovaSuite_Release_26_3_0.pdf" target="_blank" rel="noopener">Open in new tab ↗</a>
+      <p id="modalFilename">Viewing: NovaSuite_Release_26_3_0.pdf</p>
+      <a id="modalNewTab" href="NovaSuite_Release_26_3_0.pdf" target="_blank" rel="noopener">Open in new tab ↗</a>
     </div>
   </div>
 </div>
 
 <script>
-  function openPdfModal() {
-    const modal = document.getElementById('pdfModal');
-    const frame = document.getElementById('pdfFrame');
-    const loading = document.getElementById('pdfLoading');
+  /* ── Hamburger nav ── */
+  var navToggle = document.getElementById('navToggle');
+  var navLinks  = document.getElementById('navLinks');
+  function closeNav() {
+    navToggle.classList.remove('open');
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+  navToggle.addEventListener('click', function() {
+    var isOpen = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  /* Close nav when clicking outside */
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('nav')) closeNav();
+  });
 
-    // Build absolute URL to the PDF (needed for Google Docs Viewer)
-    const pdfPath = 'NovaSuite_Release_26_3_0.pdf';
-    const absUrl  = new URL(pdfPath, window.location.href).href;
-
-    // Use Google Docs Viewer — works on all browsers, no plugin needed
-    const viewerUrl = 'https://docs.google.com/viewer?embedded=true&url=' + encodeURIComponent(absUrl);
-
-    if (frame.src !== viewerUrl) {
-      loading.style.display = 'flex';   // show spinner
-      frame.src = viewerUrl;
+  var pdfDocs = {
+    rn: {
+      file: 'NovaSuite_Release_26_3_0.pdf',
+      title: 'NovaSuite Digital Platform — Release 26.3.0',
+      subtitle: 'Release Notes · 25 pages · June 2026'
+    },
+    ug: {
+      file: 'NovaSuite_WC_Agent_Portal_User_Guide.pdf',
+      title: 'NovaSuite WC Agent Portal — User Guide 25.8.0',
+      subtitle: 'User Guide · 27 pages · Feb 2026'
+    },
+    hc: {
+      file: 'HealthCheck_API_Reference.pdf',
+      title: 'Health Check API — Reference Documentation',
+      subtitle: 'API Reference · 7 sections · July 2026'
     }
+  };
+
+  function openPdfModal(type) {
+    var doc = pdfDocs[type] || pdfDocs['rn'];
+    var modal = document.getElementById('pdfModal');
+    var frame = document.getElementById('pdfFrame');
+    var loading = document.getElementById('pdfLoading');
+
+    document.getElementById('modalTitle').textContent = doc.title;
+    document.getElementById('modalSubtitle').textContent = doc.subtitle;
+    document.getElementById('modalDownload').href = doc.file;
+    document.getElementById('modalDownload').download = doc.file;
+    document.getElementById('modalFilename').textContent = 'Viewing: ' + doc.file;
+    document.getElementById('modalNewTab').href = doc.file;
+
+    var absUrl = new URL(doc.file, window.location.href).href;
+    var viewerUrl = 'https://docs.google.com/viewer?embedded=true&url=' + encodeURIComponent(absUrl);
+
+    loading.style.display = 'flex';
+    frame.src = viewerUrl;
+
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
@@ -869,16 +1252,6 @@
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closePdfModal();
   });
-
-  function handleSubmit() {
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
-    if (!email || !message) {
-      alert('Please fill in your email and message before sending.');
-      return;
-    }
-    alert('Thank you! Your message has been sent. Dinesh will be in touch within 24 hours.');
-  }
 </script>
 </body>
 </html>
