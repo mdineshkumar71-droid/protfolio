@@ -1272,12 +1272,12 @@
                     animation:spin .8s linear infinite;"></div>
         <p style="color:#8a9ab8;font-size:.88rem;">Loading PDF…</p>
       </div>
-      <iframe id="pdfFrame"
-              src=""
-              style="width:100%;height:100%;border:none;display:block;"
-              onload="document.getElementById('pdfLoading').style.display='none';"
-              title="PDF Preview">
-      </iframe>
+      <embed id="pdfEmbed"
+             src=""
+             type="application/pdf"
+             style="width:100%;height:100%;border:none;display:block;"
+             onload="document.getElementById('pdfLoading').style.display='none';"
+      />
     </div>
     <div class="pdf-modal-footer">
       <p id="modalFilename">Viewing: NovaSuite_Release_26_3_0.pdf</p>
@@ -1286,6 +1286,7 @@
   </div>
 </div>
 
+<script>
   /* ── Image lightbox ── */
   function openImgLightbox(src, caption) {
     var overlay = document.getElementById('imgLightbox');
@@ -1301,9 +1302,6 @@
   function handleImgOverlayClick(e) {
     if (e.target === document.getElementById('imgLightbox')) closeImgLightbox();
   }
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') { closePdfModal(); closeImgLightbox(); }
-  });
 
   /* ── Hamburger nav ── */
   var navToggle = document.getElementById('navToggle');
@@ -1318,11 +1316,11 @@
     navToggle.classList.toggle('open');
     navToggle.setAttribute('aria-expanded', isOpen);
   });
-  /* Close nav when clicking outside */
   document.addEventListener('click', function(e) {
     if (!e.target.closest('nav')) closeNav();
   });
 
+  /* ── PDF Modal ── */
   var pdfDocs = {
     rn: {
       file: 'NovaSuite_Release_26_3_0.pdf',
@@ -1343,28 +1341,34 @@
 
   function openPdfModal(type) {
     var doc = pdfDocs[type] || pdfDocs['rn'];
-    var modal = document.getElementById('pdfModal');
-    var frame = document.getElementById('pdfFrame');
+    var modal   = document.getElementById('pdfModal');
+    var embed   = document.getElementById('pdfEmbed');
     var loading = document.getElementById('pdfLoading');
+    var newTab  = document.getElementById('modalNewTab');
+    var dl      = document.getElementById('modalDownload');
 
-    document.getElementById('modalTitle').textContent = doc.title;
+    document.getElementById('modalTitle').textContent    = doc.title;
     document.getElementById('modalSubtitle').textContent = doc.subtitle;
-    document.getElementById('modalDownload').href = doc.file;
-    document.getElementById('modalDownload').download = doc.file;
     document.getElementById('modalFilename').textContent = 'Viewing: ' + doc.file;
-    document.getElementById('modalNewTab').href = doc.file;
-
-    var absUrl = new URL(doc.file, window.location.href).href;
-    var viewerUrl = 'https://docs.google.com/viewer?embedded=true&url=' + encodeURIComponent(absUrl);
+    dl.href     = doc.file;
+    dl.download = doc.file;
+    newTab.href = doc.file;
 
     loading.style.display = 'flex';
-    frame.src = viewerUrl;
+    embed.src = '';
+    /* Small delay so loading spinner appears before the browser
+       starts rendering the PDF */
+    setTimeout(function() {
+      embed.src = doc.file;
+    }, 80);
 
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
   }
 
   function closePdfModal() {
+    var embed = document.getElementById('pdfEmbed');
+    embed.src = '';          /* stop loading / free memory */
     document.getElementById('pdfModal').classList.remove('open');
     document.body.style.overflow = '';
   }
@@ -1372,6 +1376,10 @@
   function handleOverlayClick(e) {
     if (e.target === document.getElementById('pdfModal')) closePdfModal();
   }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') { closePdfModal(); closeImgLightbox(); }
+  });
 </script>
 </body>
 </html>
